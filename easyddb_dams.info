@@ -1,0 +1,6 @@
+name = "Easyddb DAMS"
+description = "Digital Asset Management System"
+core = "7.x"
+package = "easyDDB"
+version = "0.1"
+dependencies[] = "media"

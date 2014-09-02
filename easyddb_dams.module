@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ *  Module file
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function easyddb_dams_menu() {
+  $items = array();
+
+  $items['admin/easyddb_dams_media_manager'] = array(
+    'title' => 'Media manager',
+    'description' => 'Upload and manage the media library',
+    'page arguments' => array(),
+    'page callback' => 'easyddb_dams_media_manager_page',
+    'access arguments' => array('administer files'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Media manager page.
+ */
+function easyddb_dams_media_manager_page() {
+  $content = '';
+
+  if (module_exists('media')) {
+    module_load_include('inc', 'media', 'includes/media.browser');
+    $content = media_browser();
+  }
+
+  return $content;
+}
