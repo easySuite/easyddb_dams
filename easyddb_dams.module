@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- *  Module file
+ *  Code for DAMS module.
  */
 
 /**
@@ -34,4 +34,30 @@ function easyddb_dams_media_manager_page() {
   }
 
   return $content;
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function easyddb_dams_page_alter(&$page) {
+  if (arg(0) == 'admin' && arg(1) == 'easyddb_dams_media_manager') {
+    $page['#theme'] = 'media_dialog_page';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function easyddb_dams_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'file_entity_add_upload' && arg(1) == 'easyddb_dams_media_manager') {
+    array_unshift($form['#submit'], 'easyddb_dams_add_upload_submit');
+  }
+}
+
+/**
+ * Custom submit for file upload.
+ */
+function easyddb_dams_add_upload_submit($form, $form_state) {
+  // If file uploaded form DAMS page redirect to it, not to default page.
+  $_GET['destination'] = 'admin/easyddb_dams_media_manager';
 }
