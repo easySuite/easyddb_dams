@@ -41,6 +41,8 @@ function easyddb_dams_media_manager_page() {
  */
 function easyddb_dams_page_alter(&$page) {
   if (arg(0) == 'admin' && arg(1) == 'easyddb_dams_media_manager') {
+    $js_file = drupal_get_path('module', 'easyddb_dams') . '/js/dams_media_manager.js';
+    drupal_add_js($js_file, 'file');
     $page['#theme'] = 'media_dialog_page';
   }
 }
