@@ -20,18 +20,19 @@ Drupal.behaviors.mediaViews = {
     });
 
     // Catch the click on a media item
-    $('#media-browser-library-list li').bind('click', function (e) {
+    $('#media-browser-library-list li div.media-item', context).bind('click', function (e) {
       // Remove all currently selected files
       $('.media-item').removeClass('selected');
       // Set the current item to active
       $(this).addClass('selected');
       // Add this FID to the array of selected files
-      var fid = $(this).parent('a[data-fid]').attr('data-fid');
+      var fid = $(this).children().attr('data-fid');
 
       // Edit button
+      $('.edit-button').remove();
       var x = $('<a>');
-      x.addClass('use-ajax').addClass('button').attr('href', '/file/' + fid + '/edit').attr('id', 'edit-media-button').html('Edit');
-      $('.form-actions').append(x);
+      x.addClass('button edit-button').attr('href', '/file/' + fid + '/edit').attr('id', 'edit-media-button').attr('target','_blank').html('Edit');
+      $('.form-actions', context).append(x);
       var empty_settings = [];
       Drupal.behaviors.AJAX.attach(x, empty_settings);
 
