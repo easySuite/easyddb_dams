@@ -1,0 +1,6 @@
+name = "DAMS Media Tracker"
+description = "Digital Asset Management System Media Tracker"
+core = "7.x"
+package = "easyDDB"
+version = "0.1"
+dependencies[] = "media"
