@@ -218,15 +218,6 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
   // Set some default element properties.
   $element['#file'] = $file;
 
-  $element['title'] = array(
-    '#type' => 'item',
-    '#title' => $element['#title'],
-    '#markup' => '',
-    '#description' => $element['#description'],
-    '#required' => $element['#required'],
-    '#weight' => -100,
-  );
-
   // @todo This should be loaded from the JS in case of a failed form submission.
   $element['preview'] = array(
     '#prefix' => '<div class="preview launcher">',
