@@ -1,0 +1,4 @@
+.page-admin-easyddb-dams-media-manager .media-browser-tab .fake-submit,
+.page-admin-easyddb-dams-media-manager .media-browser-tab .fake-cancel {
+  display: none;
+}
