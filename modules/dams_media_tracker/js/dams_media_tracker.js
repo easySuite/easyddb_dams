@@ -37,7 +37,7 @@
         // Track button
         var settings = [];
         var y = $('<a>');
-        y.addClass('button')/*.attr('href', '/media/' + fid + '/track/nojs')*/.attr('id', 'track-media-button').html('Track');
+        y.addClass('button').attr('id', 'track-media-button').html('Track');
         $('.form-actions #track-media-button').remove();
         $('.form-actions').append(y);
 
