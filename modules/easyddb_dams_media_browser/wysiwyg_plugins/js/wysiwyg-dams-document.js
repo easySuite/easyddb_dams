@@ -66,7 +66,7 @@ Drupal.wysiwyg.plugins.dams_document = {
 
       if (formattedMedia.type === 'easyddb-dams-doc') {
         formattedMediaType = 'easyddb-dams-doc';
-        formattedMediaHtml = '<img src="' + Drupal.settings.easyddb_dams.icon_path + doctype_icon + '"/>';
+        formattedMediaHtml = '<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + doctype_icon + '"/>';
       }
       else {
         formattedMediaType = formattedMedia.type;
@@ -89,7 +89,7 @@ Drupal.wysiwyg.plugins.dams_document = {
     //
     var imgElement = $(this.stripDivs(formattedMedia));
 
-    if (viewMode === 'easyddb_dams_download_link') {
+    if (viewMode === 'easyddb_dams_media_browser_download_link') {
       imgElement = $('<a href="' + mediaFile.url + '" alt="" title="">' + mediaFile.filename + '</a>');
     }
 

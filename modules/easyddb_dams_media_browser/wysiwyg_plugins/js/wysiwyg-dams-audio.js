@@ -54,22 +54,22 @@ Drupal.wysiwyg.plugins.dams_audio = {
     // But until then, we're just going to embed to img.
     // This is pretty hacked for now.
     //
-    if (viewMode === 'easyddb_dams_download_icon' || viewMode === 'easyddb_dams_popup') {
-      imgElement = $('<img src="' + Drupal.settings.easyddb_dams.icon_path + 'doc_mp3.png"/>');
+    if (viewMode === 'easyddb_dams_media_browser_download_icon' || viewMode === 'easyddb_dams_media_browser_popup') {
+      imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_mp3.png"/>');
     }
-    else if (viewMode === 'easyddb_dams_download_link') {
+    else if (viewMode === 'easyddb_dams_media_browser_download_link') {
       var alt = (mediaFile.field_dams_alt_name.und !== undefined) ? mediaFile.field_dams_alt_name.und[0].safe_value : '';
       var title = (mediaFile.field_dams_title.und !== undefined) ? mediaFile.field_dams_title.und[0].safe_value : '';
       imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
     }
-    else if (viewMode === 'easyddb_dams_inline') {
+    else if (viewMode === 'easyddb_dams_media_browser_inline') {
       imgElement = $('<object class="easyddb-dams-inline" type="application/x-shockwave-flash" \
-data="' + Drupal.settings.easyddb_dams.audio_player + '" width="300" height="30">\
-<param name="movie" value="' + Drupal.settings.easyddb_dams.audio_player + '" />\
+data="' + Drupal.settings.easyddb_dams_media_browser.audio_player + '" width="300" height="30">\
+<param name="movie" value="' + Drupal.settings.easyddb_dams_media_browser.audio_player + '" />\
 <param name="bgcolor" value="#085c68" />\
 <param name="wmode" value="opaque">\
 <param name="FlashVars" value="mp3=' + mediaFile.url + '&showvolume=1" />\
-<embed href="' + Drupal.settings.easyddb_dams.audio_player + '" bgcolor="#085c68" width="300" \
+<embed href="' + Drupal.settings.easyddb_dams_media_browser.audio_player + '" bgcolor="#085c68" width="300" \
 height="30" wmode="opaque" name="movie" align=""\
 type="application/x-shockwave-flash" flashvars="mp3=' + mediaFile.url + '&showvolume=1">\
 </embed>\
@@ -164,7 +164,7 @@ type="application/x-shockwave-flash" flashvars="mp3=' + mediaFile.url + '&showvo
             mediaObj = null;
           }
           if (mediaObj.hasOwnProperty('attributes') && mediaObj['attributes']['class'].indexOf('easyddb-dams-audio') != -1) {
-            var imgElement = $('<img src="' + Drupal.settings.easyddb_dams.icon_path + 'doc_mp3.png"/>');
+            var imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_mp3.png"/>');
             this.addImageAttributes(imgElement, mediaObj.fid, mediaObj.view_mode);
             var toInsert = this.outerHTML(imgElement);
             content = content.replace(inlineTag, toInsert);
