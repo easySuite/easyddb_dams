@@ -56,7 +56,7 @@ Drupal.wysiwyg.plugins.dams_image = {
     //
     var imgElement = $(this.stripDivs(formattedMedia));
 
-    if (viewMode === 'easyddb_dams_download_link') {
+    if (viewMode === 'easyddb_dams_media_browser_download_link') {
       var alt = (mediaFile.field_image_alt_text.und !== undefined) ? mediaFile.field_image_alt_text.und[0].safe_value : '';
       var title = (mediaFile.field_image_title_text.und !== undefined) ? mediaFile.field_image_title_text.und[0].safe_value : '';
       imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
@@ -156,7 +156,7 @@ Drupal.wysiwyg.plugins.dams_image = {
           catch(err) {
             mediaObj = null;
           }
-          if ($.inArray(mediaObj.view_mode, ["easyddb_dams_inline", "easyddb_dams_download_link"])) {
+          if ($.inArray(mediaObj.view_mode, ["easyddb_dams_media_browser_inline", "easyddb_dams_media_browser_download_link"])) {
             var imgElement = $(mediaMarkup);
             this.addImageAttributes(imgElement, mediaObj, mediaObj.view_mode);
             var toInsert = this.outerHTML(imgElement);

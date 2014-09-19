@@ -26,7 +26,7 @@ Drupal.behaviors.mediaViews = {
       // Set the current item to active
       $(this).addClass('selected');
       // Add this FID to the array of selected files
-      var fid = $(this).children().attr('data-fid');
+      var fid = $(this).attr('data-fid');
 
       // Edit button
       $('.edit-button').remove();
