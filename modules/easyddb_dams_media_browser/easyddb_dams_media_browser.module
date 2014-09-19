@@ -28,7 +28,9 @@ function easyddb_dams_media_browser_media_browser_plugins_alter(&$plugins) {
     if ($name == 'library') {
       unset($plugins[$name]);
     }
-    drupal_add_js(drupal_get_path('module', 'easyddb_dams_media_browser') . '/js/easyddb_dams_media_browser.media_browser.js');
+    if (!module_exists('dams_media_tracker')) {
+      drupal_add_js(drupal_get_path('module', 'easyddb_dams_media_browser') . '/js/easyddb_dams_media_browser.media_browser.js');
+    }
     drupal_add_css(drupal_get_path('module', 'easyddb_dams_media_browser') . '/css/easyddb_dams_media_browser.media_browser.css');
   }
 }

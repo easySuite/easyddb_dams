@@ -31,15 +31,17 @@
         x.attr('target', '_blank');
         $('.form-actions #edit-media-button').remove();
         $('.form-actions').append(x);
+        $('.form-actions #edit-media-button').show();
         var empty_settings = [];
         Drupal.behaviors.AJAX.attach(x, empty_settings);
 
         // Track button
         var settings = [];
         var y = $('<a>');
-        y.addClass('button').attr('id', 'track-media-button').html('Track');
+        y.addClass('button').attr('id', 'track-media-button').attr('href', '/file/' + fid + '/usage').attr('target','_blank').html('Track');
         $('.form-actions #track-media-button').remove();
         $('.form-actions').append(y);
+        $('.form-actions #track-media-button').show();
 
         // @TODO: Hotfix because it's not working atm for first page only
         var file;
@@ -60,23 +62,7 @@
     }
   }
 
-  $('#track-media-button').live('click', function() {
-    var fid = $('.media-item.selected').attr('data-fid');
 
-    $.ajax({
-      url: '/media/' + fid + '/track',
-      type: 'POST',
-      dataType: 'html',
-      success: function(data) {
-        var popup_settings = {
-          title: Drupal.t('Track file'),
-          name: 'dams-media-tracker',
-          data: data
-        };
-        Drupal.ding_popup.open(popup_settings);
-      }
-    });
-  });
 
 }(jQuery));
 
