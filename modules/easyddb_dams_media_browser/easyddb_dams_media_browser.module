@@ -170,6 +170,30 @@ function easyddb_dams_media_browser_media_wysiwyg_allowed_view_modes_alter(&$vie
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function easyddb_dams_media_browser_entity_info_alter(&$entity_info) {
+  $entity_info['file']['view modes'] = array(
+    'easyddb_dams_media_browser_inline' => array(
+      'label' => t('DAMS inline'),
+      'custom settings' => FALSE,
+    ),
+    'easyddb_dams_media_browser_popup' => array(
+      'label' => t('DAMS popup'),
+      'custom settings' => FALSE,
+    ),
+    'easyddb_dams_media_browser_download_icon' => array(
+      'label' => t('DAMS icon'),
+      'custom settings' => FALSE,
+    ),
+    'easyddb_dams_media_browser_download_link' => array(
+      'label' => t('DAMS link'),
+      'custom settings' => FALSE,
+    ),
+  );
+}
+
+/**
  * Implements hook_wysiwyg_include_directory().
  */
 function easyddb_dams_media_browser_wysiwyg_include_directory($type) {
@@ -475,7 +499,6 @@ function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
   $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
   $audio_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_mp3.swf';
   $video_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_video.swf';
-
   // Setting up variables for the template
   $variables['file_type']     = $file->type;
   $variables['player'] = '';
