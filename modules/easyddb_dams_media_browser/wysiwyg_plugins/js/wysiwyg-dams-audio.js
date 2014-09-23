@@ -55,11 +55,11 @@ Drupal.wysiwyg.plugins.dams_audio = {
     // This is pretty hacked for now.
     //
     if (viewMode === 'easyddb_dams_media_browser_download_icon' || viewMode === 'easyddb_dams_media_browser_popup') {
-      imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_mp3.png"/>');
+      // imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_mp3.png"/>');
     }
     else if (viewMode === 'easyddb_dams_media_browser_download_link') {
-      var alt = (mediaFile.field_dams_alt_name.und !== undefined) ? mediaFile.field_dams_alt_name.und[0].safe_value : '';
-      var title = (mediaFile.field_dams_title.und !== undefined) ? mediaFile.field_dams_title.und[0].safe_value : '';
+      var alt = (mediaFile.alt !== undefined) ? mediaFile.alt : '';
+      var title = (mediaFile.title !== undefined) ? mediaFile.title : '';
       imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
     }
     else if (viewMode === 'easyddb_dams_media_browser_inline') {
