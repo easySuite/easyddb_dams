@@ -54,22 +54,22 @@ Drupal.wysiwyg.plugins.dams_video = {
     // But until then, we're just going to embed to img.
     // This is pretty hacked for now.
     //
-    if (viewMode === 'easyddb_dams_download_icon' || viewMode === 'easyddb_dams_popup') {
-      var imgElement = $('<img src="' + Drupal.settings.easyddb_dams.icon_path + 'doc_flv.png"/>');
+    if (viewMode === 'easyddb_dams_media_browser_download_icon' || viewMode === 'easyddb_dams_media_browser_popup') {
+      var imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_flv.png"/>');
     }
-    else if (viewMode === 'easyddb_dams_download_link') {
-      var alt = (mediaFile.field_dams_alt_name.und !== undefined) ? mediaFile.field_dams_alt_name.und[0].safe_value : '';
-      var title = (mediaFile.field_dams_title.und !== undefined) ? mediaFile.field_dams_title.und[0].safe_value : '';
+    else if (viewMode === 'easyddb_dams_media_browser_download_link') {
+      var alt = (mediaFile.alt !== undefined) ? mediaFile.alt : '';
+      var title = (mediaFile.title !== undefined) ? mediaFile.title : '';
       imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
     }
-    if (viewMode === 'easyddb_dams_inline') {
+    if (viewMode === 'easyddb_dams_media_browser_inline') {
       var imgElement = $('<object class="easyddb-dams-inline" type="application/x-shockwave-flash" \
-data="' + Drupal.settings.easyddb_dams.video_player + '" width="640" height="360">\
-<param name="movie" value="' + Drupal.settings.easyddb_dams.video_player + '" />\
+data="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" width="640" height="360">\
+<param name="movie" value="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" />\
 <param name="allowFullScreen" value="true" />\
 <param name="wmode" value="opaque" />\
 <param name="FlashVars" value="controlbar=over&file=' + mediaFile.url + '" />\
-<embed href="' + Drupal.settings.easyddb_dams.video_player + '" bgcolor="#085c68" width="640" \
+<embed href="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" bgcolor="#085c68" width="640" \
 height="360" wmode="opaque" allowFullScreen="true" name="movie" align=""\
 type="application/x-shockwave-flash" flashvars="controlbar=over&file=' + mediaFile.url + '">\
 </embed>\
@@ -161,7 +161,7 @@ type="application/x-shockwave-flash" flashvars="controlbar=over&file=' + mediaFi
             mediaObj = null;
           }
           if (mediaObj.hasOwnProperty('attributes') && mediaObj['attributes']['class'].indexOf('easyddb-dams-video') != -1) {
-            var imgElement = $('<img src="' + Drupal.settings.easyddb_dams.icon_path + 'doc_flv.png"/>');
+            var imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_flv.png"/>');
             this.addImageAttributes(imgElement, mediaObj.fid, mediaObj.view_mode);
             var toInsert = this.outerHTML(imgElement);
             content = content.replace(inlineTag, toInsert);

@@ -18,7 +18,6 @@ function easyddb_dams_media_browser_media_browser_plugins_alter(&$plugins) {
     $parts = explode('_', $name);
     if ($parts[0] == 'dams' && $parts[1] == 'media' && $parts[2] == 'browser--media') {
       $plugins[$name]['#weight'] = 11 + $parts[4];
-
       // Add specific libraries for media
       ctools_include('modal');
       ctools_modal_add_js();
@@ -28,6 +27,7 @@ function easyddb_dams_media_browser_media_browser_plugins_alter(&$plugins) {
     if ($name == 'library') {
       unset($plugins[$name]);
     }
+
     if (!module_exists('dams_media_tracker')) {
       drupal_add_js(drupal_get_path('module', 'easyddb_dams_media_browser') . '/js/easyddb_dams_media_browser.media_browser.js');
     }
@@ -357,8 +357,8 @@ function easyddb_dams_media_browser_media_add_upload_validate($form, &$form_stat
 /**
  * Implements hook_media_token_to_markup_alter().
  */
-function easyddb_dams_media_browser_media_token_to_markup_alter(&$element, $tag_info, $settings) {
-  $easyddb_view_modes = array('easyddb_dams_media_browser_inline', 'easyddb_dams_media_browser_popup', 'easyddb_dams_media_browser_download_icon', 'easyddb-dams-doc');
+function easyddb_dams_media_browser_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
+  $easyddb_view_modes = array('r', 'easyddb_dams_media_browser_popup', 'easyddb_dams_media_browser_download_icon', 'easyddb-dams-doc');
   if (in_array($tag_info['view_mode'], $easyddb_view_modes)) {
     switch ($tag_info['view_mode']) {
       case 'easyddb-dams-doc':
@@ -519,7 +519,6 @@ function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
 function template_preprocess_easyddb_dams_media_browser_popup(&$variables) {
   $file = $variables['element']['content']['file']['#file'];
   $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
-
   // Setting up variables for the template
   $variables['file_type']     = $file->type;
   $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
@@ -541,9 +540,9 @@ function template_preprocess_easyddb_dams_media_browser_download_icon(&$variable
 }
 
 /**
- * Implements hook_preprocess_page().
+ * Implements hook_page_alter().
  */
-function easyddb_dams_media_browser_preprocess_page(&$variables) {
+function easyddb_dams_media_browser_page_alter(&$page) {
   drupal_add_library('system', 'ui.dialog');
   $audio_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_mp3.swf';
   $video_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_video.swf';

@@ -16,12 +16,12 @@
       // with NO FALLBACK (due to encoeasyddb issues)
       if ($(this).hasClass('easyddb-dams-audio')) {
         dialog_content = '<object type="application/x-shockwave-flash" \
-data="' + Drupal.settings.easyddb_dams.audio_player + '" width="300" height="30">\
-<param name="movie" value="' + Drupal.settings.easyddb_dams.audio_player + '" />\
+data="' + Drupal.settings.easyddb_dams_media_browser.audio_player + '" width="300" height="30">\
+<param name="movie" value="' + Drupal.settings.easyddb_dams_media_browser.audio_player + '" />\
 <param name="bgcolor" value="#085c68" />\
 <param name="wmode" value="opaque">\
 <param name="FlashVars" value="mp3=' + media + '&showvolume=1" />\
-<embed href="' + Drupal.settings.easyddb_dams.audio_player + '" bgcolor="#085c68" width="300" \
+<embed href="' + Drupal.settings.easyddb_dams_media_browser.audio_player + '" bgcolor="#085c68" width="300" \
 height="30" wmode="opaque" name="movie" align=""\
 type="application/x-shockwave-flash" flashvars="mp3=' + media + '&showvolume=1">\
 </embed>\
@@ -43,12 +43,12 @@ type="application/x-shockwave-flash" flashvars="mp3=' + media + '&showvolume=1">
       // with NO FALLBACK (straight flash player)
       if ($(this).hasClass('easyddb-dams-video')) {
         dialog_content = '<object type="application/x-shockwave-flash" \
-data="' + Drupal.settings.easyddb_dams.video_player + '" width="640" height="360">\
-<param name="movie" value="' + Drupal.settings.easyddb_dams.video_player + '" />\
+data="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" width="640" height="360">\
+<param name="movie" value="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" />\
 <param name="allowFullScreen" value="false" />\
 <param name="wmode" value="opaque" />\
 <param name="FlashVars" value="controlbar=over&file=' + media + '" />\
-<embed href="' + Drupal.settings.easyddb_dams.video_player + '" bgcolor="#085c68" width="640" \
+<embed href="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" bgcolor="#085c68" width="640" \
 height="360" wmode="opaque" allowFullScreen="false" name="movie" align=""\
 type="application/x-shockwave-flash" flashvars="controlbar=over&file=' + media + '">\
 </embed>\
