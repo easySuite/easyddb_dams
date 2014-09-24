@@ -55,7 +55,7 @@ Drupal.wysiwyg.plugins.dams_audio = {
     // This is pretty hacked for now.
     //
     if (viewMode === 'easyddb_dams_media_browser_download_icon' || viewMode === 'easyddb_dams_media_browser_popup') {
-      // imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_mp3.png"/>');
+      imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_mp3.png"/>');
     }
     else if (viewMode === 'easyddb_dams_media_browser_download_link') {
       var alt = (mediaFile.alt !== undefined) ? mediaFile.alt : '';
