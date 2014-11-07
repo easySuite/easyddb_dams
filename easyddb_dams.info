@@ -1,4 +1,4 @@
-name = "Easyddb DAMS"
+name = "easyDDB DAMS"
 description = "Digital Asset Management System"
 core = "7.x"
 package = "easyDDB"

@@ -1,4 +1,4 @@
-name = "DAMS Media Tracker"
+name = "easyDDB DAMS Media Tracker"
 description = "Digital Asset Management System Media Tracker"
 core = "7.x"
 package = "easyDDB"

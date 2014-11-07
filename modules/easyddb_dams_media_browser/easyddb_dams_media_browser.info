@@ -1,8 +1,8 @@
-name = Easyddb DAMS Media Browser
-description = Additional tabs for Media Browser
-core = 7.x
-package = Artesis
-php = 5.2.4
+name = "easyDDB DAMS Media Browser"
+description = "Additional tabs for Media Browser"
+core = "7.x"
+package = "easyDDB"
+php = "5.2.4"
 dependencies[] = ctools
 dependencies[] = strongarm
 dependencies[] = views
