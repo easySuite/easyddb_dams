@@ -15,11 +15,50 @@ function easyddb_dams_menu() {
     'description' => 'Upload and manage the media library',
     'page arguments' => array(),
     'page callback' => 'easyddb_dams_media_manager_page',
-    'access arguments' => array('administer files'),
+    'access arguments' => array('use easyddb dams'),
     'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function easyddb_dams_permission() {
+  return array(
+    'use easyddb dams' => array(
+      'title' => t('Use easyddb dams.'),
+      'description' => t('Allows use easyddb dams.'),
+    ),
+  );
+}
+
+/**
+ *  Implements hook_secure_permissions().
+ */
+function easyddb_dams_secure_permissions($role) {
+  $permissions = array(
+    'administrators' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+    'editor' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+    'local administrator' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+    'local editor' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+  );
+  if (isset($permissions[$role])) {
+    return $permissions[$role];
+  }
 }
 
 /**
