@@ -59,7 +59,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
           'upload' => 'upload',
           'dams_media_browser--media_browser_3' => 'dams_media_browser--media_browser_3',
         ),
-        'file_extensions' => 'flv mov m4v mp4 avi wmv mpeg mpg',
+        'file_extensions' => 'mp4 m4v f4v flv',
       ),
     ),
   );
