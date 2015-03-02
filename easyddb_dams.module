@@ -79,9 +79,18 @@ function easyddb_dams_media_manager_page() {
  * Implements hook_page_alter().
  */
 function easyddb_dams_page_alter(&$page) {
-  if (arg(0) == 'admin' && arg(1) == 'easyddb_dams_media_manager') {
+  $args = arg();
+  $media_page = $args[0] == 'admin' && $args[1] == 'easyddb_dams_media_manager';
+  $media_browser = $args[0] == 'media' && $args[1] == 'browser';
+
+  if ($media_page || $media_browser) {
     $css_file = drupal_get_path('module', 'easyddb_dams') . '/css/easyddb_dams.css';
     drupal_add_css($css_file);
+    $js_file = drupal_get_path('module', 'easyddb_dams') . '/js/easyddb_dams.scripts.js';
+    drupal_add_js($js_file, array('scope' => 'footer'));
+  }
+
+  if ($media_page) {
     $page['#theme'] = 'media_dialog_page';
   }
 }
