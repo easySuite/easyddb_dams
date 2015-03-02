@@ -44,5 +44,9 @@ function easyddb_dams_media_browser1_features_override_default_overrides() {
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|browser_plugins|youtube"] = 0;
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|progress_indicator"]["DELETED"] = TRUE;
 
+  // Exported overrides for: file_display
+  $overrides["file_display.video__default__media_vimeo_image.status"] = TRUE;
+  $overrides["file_display.video__teaser__media_vimeo_image.status"] = TRUE;
+
  return $overrides;
 }
