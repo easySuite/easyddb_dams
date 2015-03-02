@@ -17,7 +17,6 @@ function easyddb_dams_media_browser1_features_override_default_overrides() {
   $overrides["field_instance.node-ding_event-field_ding_event_files.widget|settings|allowed_schemes|youtube"] = 0;
   $overrides["field_instance.node-ding_event-field_ding_event_files.widget|settings|allowed_types|default"]["DELETED"] = TRUE;
   $overrides["field_instance.node-ding_event-field_ding_event_files.widget|settings|allowed_types|document"] = 0;
-  $overrides["field_instance.node-ding_event-field_ding_event_files.widget|settings|browser_plugins|artesis_media_browser--media_browser_1"] = 0;
   $overrides["field_instance.node-ding_event-field_ding_event_files.widget|settings|browser_plugins|dams_media_browser--media_browser_2"] = 0;
   $overrides["field_instance.node-ding_event-field_ding_event_files.widget|settings|browser_plugins|dams_media_browser--media_browser_3"] = 0;
   $overrides["field_instance.node-ding_event-field_ding_event_files.widget|settings|browser_plugins|dams_media_browser--media_browser_4"] = 0;
@@ -34,7 +33,6 @@ function easyddb_dams_media_browser1_features_override_default_overrides() {
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|allowed_types|0"]["DELETED"] = TRUE;
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|allowed_types|default"]["DELETED"] = TRUE;
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|allowed_types|document"] = 0;
-  $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|browser_plugins|artesis_media_browser--media_browser_1"] = 0;
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|browser_plugins|dams_media_browser--media_browser_2"] = 0;
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|browser_plugins|dams_media_browser--media_browser_3"] = 0;
   $overrides["field_instance.node-ding_news-field_ding_news_files.widget|settings|browser_plugins|dams_media_browser--media_browser_4"] = 0;

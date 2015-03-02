@@ -30,7 +30,6 @@ function easyddb_dams_media_browser_field_default_field_instances_alter(&$data) 
     $data['node-ding_event-field_ding_event_files']['widget']['settings']['allowed_schemes']['vimeo'] = 0; /* WAS: '' */
     $data['node-ding_event-field_ding_event_files']['widget']['settings']['allowed_schemes']['youtube'] = 0; /* WAS: '' */
     $data['node-ding_event-field_ding_event_files']['widget']['settings']['allowed_types']['document'] = 0; /* WAS: '' */
-    $data['node-ding_event-field_ding_event_files']['widget']['settings']['browser_plugins']['artesis_media_browser--media_browser_1'] = 0; /* WAS: '' */
     $data['node-ding_event-field_ding_event_files']['widget']['settings']['browser_plugins']['dams_media_browser--media_browser_2'] = 0; /* WAS: '' */
     $data['node-ding_event-field_ding_event_files']['widget']['settings']['browser_plugins']['dams_media_browser--media_browser_3'] = 0; /* WAS: '' */
     $data['node-ding_event-field_ding_event_files']['widget']['settings']['browser_plugins']['dams_media_browser--media_browser_4'] = 0; /* WAS: '' */
@@ -48,7 +47,6 @@ function easyddb_dams_media_browser_field_default_field_instances_alter(&$data) 
     $data['node-ding_news-field_ding_news_files']['widget']['settings']['allowed_schemes']['vimeo'] = 0; /* WAS: '' */
     $data['node-ding_news-field_ding_news_files']['widget']['settings']['allowed_schemes']['youtube'] = 0; /* WAS: '' */
     $data['node-ding_news-field_ding_news_files']['widget']['settings']['allowed_types']['document'] = 0; /* WAS: '' */
-    $data['node-ding_news-field_ding_news_files']['widget']['settings']['browser_plugins']['artesis_media_browser--media_browser_1'] = 0; /* WAS: '' */
     $data['node-ding_news-field_ding_news_files']['widget']['settings']['browser_plugins']['dams_media_browser--media_browser_2'] = 0; /* WAS: '' */
     $data['node-ding_news-field_ding_news_files']['widget']['settings']['browser_plugins']['dams_media_browser--media_browser_3'] = 0; /* WAS: '' */
     $data['node-ding_news-field_ding_news_files']['widget']['settings']['browser_plugins']['dams_media_browser--media_browser_4'] = 0; /* WAS: '' */
