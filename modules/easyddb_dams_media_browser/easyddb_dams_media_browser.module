@@ -358,10 +358,10 @@ function easyddb_dams_media_browser_media_add_upload_validate($form, &$form_stat
  * Implements hook_media_token_to_markup_alter().
  */
 function easyddb_dams_media_browser_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
-  $easyddb_view_modes = array('r', 'easyddb_dams_media_browser_popup', 'easyddb_dams_media_browser_download_icon', 'easyddb-dams-doc');
+  $easyddb_view_modes = array('easyddb_dams_media_browser_inline', 'easyddb_dams_media_browser_popup', 'easyddb_dams_media_browser_download_icon', 'easyddb_dams_media_browser_download_link');
   if (in_array($tag_info['view_mode'], $easyddb_view_modes)) {
     switch ($tag_info['view_mode']) {
-      case 'easyddb-dams-doc':
+      case 'easyddb_dams_media_browser_download_link':
         $theming_function = 'easyddb_dams_media_browser_view_doc';
         break;
       case 'easyddb_dams_media_browser_inline':
