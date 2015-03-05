@@ -6,6 +6,7 @@ php = "5.2.4"
 dependencies[] = ctools
 dependencies[] = strongarm
 dependencies[] = views
+dependencies[] = media_wysiwyg_view_mode
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
