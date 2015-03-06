@@ -155,7 +155,7 @@ function easyddb_dams_media_browser_media_wysiwyg_wysiwyg_allowed_view_modes_alt
       break;
     case 'document':
       $view_modes = array(
-        'easyddb_dams_media_browser_doc' => array(
+        'easyddb_dams_media_browser_download_icon' => array(
           'label' => t('DAMS icon'),
           'custom settings' => FALSE,
         ),
