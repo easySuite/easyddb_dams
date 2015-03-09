@@ -102,6 +102,9 @@ function easyddb_dams_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'file_entity_add_upload' && arg(1) == 'easyddb_dams_media_manager') {
     array_unshift($form['#submit'], 'easyddb_dams_add_upload_submit');
   }
+  elseif($form_id == 'media_youtube_add') {
+    $form['#action'] = $form['#action'] . '#media-youtube-search-tab';
+  }
 }
 
 /**
