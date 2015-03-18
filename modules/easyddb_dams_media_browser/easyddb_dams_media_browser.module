@@ -1,0 +1,602 @@
+<?php
+/**
+ * @file
+ * Code for the DAMS Media Browser feature.
+ */
+
+include_once 'easyddb_dams_media_browser.features.inc';
+
+/**
+ * Implements hook_media_browser_plugins_alter().
+ */
+function easyddb_dams_media_browser_media_browser_plugins_alter(&$plugins) {
+  $plugin_names = array_keys($plugins);
+  // Here we change the weight of the items because Media Module can't handle it at the moment
+  // NOTE: We use the fact that the displays were created in correct order
+  foreach ($plugin_names as $name) {
+
+    $parts = explode('_', $name);
+    if ($parts[0] == 'dams' && $parts[1] == 'media' && $parts[2] == 'browser--media') {
+      $plugins[$name]['#weight'] = 11 + $parts[4];
+      // Add specific libraries for media
+      ctools_include('modal');
+      ctools_modal_add_js();
+    }
+
+    // Unset the library plugin (buggy)
+    if ($name == 'library') {
+      unset($plugins[$name]);
+    }
+
+    if (!module_exists('dams_media_tracker')) {
+      drupal_add_js(drupal_get_path('module', 'easyddb_dams_media_browser') . '/js/easyddb_dams_media_browser.media_browser.js');
+    }
+    drupal_add_css(drupal_get_path('module', 'easyddb_dams_media_browser') . '/css/easyddb_dams_media_browser.media_browser.css');
+  }
+}
+
+/**
+ * Implements hook_enable().
+ *
+ * Update the easyddb_wysiwyg profile
+ */
+function easyddb_dams_media_browser_enable() {
+  // Update the WYSIWYG profile with easyddb_dams_media_browser plugins
+  $wysiwyg = array(
+    'default' => 1,
+    'user_choose' => 0,
+    'show_toggle' => 1,
+    'theme' => 'advanced',
+    'language' => 'da',
+    'buttons' => array(
+      'default' => array(
+        'Bold' => 1,
+        'Italic' => 1,
+        'Underline' => 1,
+        'JustifyLeft' => 1,
+        'JustifyCenter' => 1,
+        'JustifyRight' => 1,
+        'BulletedList' => 1,
+        'NumberedList' => 1,
+        'Undo' => 1,
+        'Redo' => 1,
+        'Link' => 1,
+        'Unlink' => 1,
+        'Anchor' => 1,
+        'Cut' => 1,
+        'Copy' => 1,
+        'Paste' => 1,
+        'PasteText' => 1,
+        'PasteFromWord' => 1,
+        'RemoveFormat' => 1,
+        'Format' => 1,
+        'Table' => 1,
+        'CreateDiv' => 1,
+      ),
+      'drupal' => array(
+        'dams_image' => 1,
+        'dams_document' => 1,
+        'dams_audio' => 1,
+        'dams_video' => 1,
+      ),
+    ),
+    'toolbar_loc' => 'top',
+    'toolbar_align' => 'left',
+    'path_loc' => 'bottom',
+    'resizing' => 1,
+    'verify_html' => 1,
+    'preformatted' => 0,
+    'convert_fonts_to_spans' => 1,
+    'remove_linebreaks' => 1,
+    'apply_source_formatting' => 0,
+    'paste_auto_cleanup_on_paste' => 1,
+    'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+    'css_setting' => 'theme',
+    'css_path' => '',
+    'css_classes' => '',
+  );
+  $format = 'easyddb_wysiwyg';
+  $editor = 'ckeditor';
+  db_merge('wysiwyg')
+    ->key(array('format' => $format))
+    ->fields(array(
+      'editor' => $editor,
+      'settings' => serialize($wysiwyg),
+    ))
+    ->execute();
+  wysiwyg_profile_cache_clear();
+}
+
+/**
+ * Media manager page.
+ */
+function easyddb_dams_media_browser_media_manager_page() {
+  $content = '';
+
+  if (module_exists('media')) {
+    module_load_include('inc', 'media', 'includes/media.browser');
+    $content = media_browser();
+  }
+
+  return $content;
+}
+
+/**
+ * Implements hook_media_wysiwyg_allowed_view_modes_alter().
+ */
+function easyddb_dams_media_browser_media_wysiwyg_wysiwyg_allowed_view_modes_alter(&$view_modes, $file) {
+  switch ($file->type) {
+    case 'audio':
+    case 'video':
+      $view_modes = array(
+        'easyddb_dams_media_browser_inline' => array(
+          'label' => t('DAMS inline'),
+          'custom settings' => FALSE,
+        ),
+        'easyddb_dams_media_browser_popup' => array(
+          'label' => t('DAMS popup'),
+          'custom settings' => FALSE,
+        ),
+        'easyddb_dams_media_browser_download_icon' => array(
+          'label' => t('DAMS icon'),
+          'custom settings' => FALSE,
+        ),
+        'easyddb_dams_media_browser_download_link' => array(
+          'label' => t('DAMS link'),
+          'custom settings' => FALSE,
+        ),
+      );
+      break;
+    case 'image':
+      $view_modes['easyddb_dams_media_browser_download_link'] = array(
+        'label' => t('DAMS link'),
+        'custom settings' => FALSE,
+      );
+      break;
+    case 'document':
+      $view_modes = array(
+        'easyddb_dams_media_browser_download_icon' => array(
+          'label' => t('DAMS icon'),
+          'custom settings' => FALSE,
+        ),
+        'easyddb_dams_media_browser_download_link' => array(
+          'label' => t('DAMS link'),
+          'custom settings' => FALSE,
+        ),
+      );
+      break;
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function easyddb_dams_media_browser_entity_info_alter(&$entity_info) {
+  $entity_info['file']['view modes'] = array(
+    'easyddb_dams_media_browser_inline' => array(
+      'label' => t('DAMS inline'),
+      'custom settings' => FALSE,
+    ),
+    'easyddb_dams_media_browser_popup' => array(
+      'label' => t('DAMS popup'),
+      'custom settings' => FALSE,
+    ),
+    'easyddb_dams_media_browser_download_icon' => array(
+      'label' => t('DAMS icon'),
+      'custom settings' => FALSE,
+    ),
+    'easyddb_dams_media_browser_download_link' => array(
+      'label' => t('DAMS link'),
+      'custom settings' => FALSE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_wysiwyg_include_directory().
+ */
+function easyddb_dams_media_browser_wysiwyg_include_directory($type) {
+  switch ($type) {
+    case 'plugins':
+      return 'wysiwyg_plugins';
+      break;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function easyddb_dams_media_browser_form_alter(&$form, &$form_state, $form_id) {
+  // Removing unnecessary options from media
+  if ($form_id == 'media_format_form') {
+    unset($form['options']['format']['#options']['media_link']);
+    unset($form['options']['format']['#options']['token']);
+  }
+  // Add new styles to media edit form
+  if ($form_id == 'file_entity_edit') {
+    $form['file_preview'] = array(
+      '#type' => 'markup',
+      '#markup' => '<div class="file-preview"></div>',
+      '#weight' => -100,
+    );
+    drupal_add_css(drupal_get_path('module', 'easyddb_dams_media_browser') . '/css/easyddb_dams_media_browser.media_edit.css');
+  }
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function easyddb_dams_media_browser_element_info_alter(&$type) {
+  // Rewriting default media process (mostly copy/paste)
+  // in order to include our changed dams.media.js file with specific
+  // 'Edit' button functionality
+  $type['media']['#process'] = array('easyddb_dams_media_browser_media_element_process');
+}
+
+/**
+ * Alternative process function for media element
+ */
+function easyddb_dams_media_browser_media_element_process(&$element, &$form_state, $form) {
+  $fid = isset($element['#value']['fid']) ? $element['#value']['fid'] : 0;
+  $file = $fid ? file_load($fid) : FALSE;
+
+  // Set some default element properties.
+  $element['#file'] = $file;
+
+  // @todo This should be loaded from the JS in case of a failed form submission.
+  $element['preview'] = array(
+    '#prefix' => '<div class="preview launcher">',
+    '#suffix' => '</div>',
+    '#weight' => 0,
+    'content' => !empty($file) ? media_get_thumbnail_preview($file) : array(),
+  );
+
+  $element['select'] = array(
+    '#type' => 'link',
+    '#href' => '',
+    '#title' => t('Select media'),
+    '#attributes' => array('class' => array('button', 'launcher')),
+    '#options' => array(
+      'fragment' => FALSE,
+      'external' => TRUE,
+    ),
+    '#weight' => 10,
+  );
+
+
+  $element['edit'] = array(
+    '#type' => 'link',
+    '#href' => url('file/' . $fid . '/edit', array('query' => drupal_get_destination())),
+    '#title' => t('Edit media'),
+    '#attributes' => array(
+      'class' => array(
+        'button',
+        'edit',
+      ),
+    ),
+    '#options' => array(
+      'fragment' => FALSE,
+      'external' => TRUE,
+    ),
+    '#weight' => 20,
+  );
+
+  $element['remove'] = array(
+    '#type' => 'link',
+    '#href' => '',
+    '#title' => t('Remove media'),
+    '#attributes' => array('class' => array('button', 'remove')),
+    '#options' => array(
+      'fragment' => FALSE,
+      'external' => TRUE,
+    ),
+    '#weight' => 30,
+  );
+
+  $element['fid'] = array(
+    '#type' => 'hidden',
+    '#value' => $fid,
+    '#attributes' => array('class' => array('fid')),
+    '#weight' => 100,
+  );
+
+  // Media browser attach code.
+  $element['#attached']['js'][] = drupal_get_path('module', 'easyddb_dams_media_browser') . '/js/easyddb_dams_media_browser.media.js';
+
+  $setting = array();
+  $setting['media']['elements'][$element['#id']] = $element['#media_options'];
+
+  $element['#attached']['js'][] = array(
+    'type' => 'setting',
+    'data' => $setting,
+  );
+
+  // hmm... Might need to think about this.
+  // All settings would likely apply to all media in a multi-value, but what about passing the existing fid?
+
+  module_load_include('inc', 'media', 'includes/media.browser');
+  media_attach_browser_js($element);
+
+  return $element;
+  // @todo: make this work for file and image fields
+}
+
+/**
+ * Alternative validate function for the media upload form in order
+ * to correctly process our 'upload from url' option
+ */
+function easyddb_dams_media_browser_media_add_upload_validate($form, &$form_state) {
+  // Check what type of upload we have
+  if ($form_state['values']['url_checkbox'] == 'url_checkbox') {
+    $new_file = system_retrieve_file($form_state['values']['url_resource'], NULL, TRUE);
+
+    if ($new_file === FALSE) {
+      form_set_error('url_resource', t('Could not retrieve the specified file.'));
+    }
+    else {
+      $form_state['values']['upload'] = $new_file;
+    }
+  }
+  elseif ($form_state['values']['local_checkbox'] == 'local_checkbox') {
+    // Save the file as a temporary file.
+    $file = file_save_upload('upload', $form['#validators']);
+
+    if ($file === NULL) {
+      form_set_error('upload', t("No file appears to have been selected."));
+    }
+    elseif ($file === FALSE) {
+      form_set_error('upload', t('File upload error.'));
+    }
+    else {
+      $form_state['values']['upload'] = $file;
+    }
+  }
+}
+
+/**
+ * Implements hook_media_token_to_markup_alter().
+ */
+function easyddb_dams_media_browser_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
+  $easyddb_view_modes = array('easyddb_dams_media_browser_inline', 'easyddb_dams_media_browser_popup', 'easyddb_dams_media_browser_download_icon', 'easyddb_dams_media_browser_download_link');
+  if (in_array($tag_info['view_mode'], $easyddb_view_modes)) {
+    switch ($tag_info['view_mode']) {
+      case 'easyddb_dams_media_browser_download_link':
+        $theming_function = 'easyddb_dams_media_browser_view_doc';
+        break;
+      case 'easyddb_dams_media_browser_inline':
+        $theming_function = 'easyddb_dams_media_browser_inline';
+        break;
+      case 'easyddb_dams_media_browser_popup':
+        $theming_function = 'easyddb_dams_media_browser_popup';
+        break;
+      case 'easyddb_dams_media_browser_download_icon':
+        $theming_function = 'easyddb_dams_media_browser_download_icon';
+        break;
+    }
+    $element['#theme'] = $theming_function;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function easyddb_dams_media_browser_theme($existing, $type, $theme, $path) {
+  return array(
+    // Default presentation of documents.
+    'easyddb_dams_media_browser_view_doc' => array(
+      'render element' => 'element',
+      'template' => 'templates/easyddb_dams_media_browser_view_doc',
+    ),
+    // Inline view of items.
+    'easyddb_dams_media_browser_inline' => array(
+      'render element' => 'element',
+      'template' => 'templates/easyddb_dams_media_browser_inline',
+    ),
+    // Popup view of items.
+    'easyddb_dams_media_browser_popup' => array(
+      'render element' => 'element',
+      'template' => 'templates/easyddb_dams_media_browser_popup',
+    ),
+    // Download icon.
+    'easyddb_dams_media_browser_download_icon' => array(
+      'render element' => 'element',
+      'template' => 'templates/easyddb_dams_media_browser_download_icon',
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_easyddb_dams_media_browser_view_doc().
+ */
+function template_preprocess_easyddb_dams_media_browser_view_doc(&$variables) {
+  $file = $variables['element']['content']['file']['#file'];
+  $doctype_icon = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images/';
+  $extension = explode('.', $file->uri);
+  $extension = array_pop($extension);
+  switch ($extension) {
+    case 'doc':
+    case 'docx':
+      $doctype_icon .= 'doc_doc.png';
+      break;
+    case 'xls':
+    case 'xlsx':
+      $doctype_icon .= 'doc_xls.png';
+      break;
+    case 'ppt':
+    case 'pptx':
+      $doctype_icon .= 'doc_ppt.png';
+      break;
+    case 'pdf':
+      $doctype_icon .= 'doc_pdf.png';
+      break;
+    case 'txt':
+    default:
+      $doctype_icon .= 'doc_txt.png';
+      break;
+  }
+
+  // Setting up variables for the template
+  $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
+  $variables['image_icon']    = $doctype_icon;
+  $variables['download_path'] = file_create_url($file->uri);
+}
+
+/**
+ * Helper function to get the doctype_icon
+ */
+function easyddb_dams_media_browser_get_doctype_icon($file = NULL) {
+  if (is_null($file)) {
+    return FALSE;
+  }
+
+  $doctype_icon = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images/';
+
+  // Setting icon by file type and extension
+  if ($file->type == 'document') {
+    $extension = explode('.', $file->uri);
+    $extension = array_pop($extension);
+    switch ($extension) {
+      case 'doc':
+      case 'docx':
+        $doctype_icon .= 'doc_doc.png';
+        break;
+      case 'xls':
+      case 'xlsx':
+        $doctype_icon .= 'doc_xls.png';
+        break;
+      case 'ppt':
+      case 'pptx':
+        $doctype_icon .= 'doc_ppt.png';
+        break;
+      case 'pdf':
+        $doctype_icon .= 'doc_pdf.png';
+        break;
+      case 'txt':
+      default:
+        $doctype_icon .= 'doc_txt.png';
+        break;
+    }
+  }
+
+  if ($file->type == 'audio') {
+    $doctype_icon .= 'doc_mp3.png';
+  }
+
+  if ($file->type == 'video') {
+    $doctype_icon .= 'doc_flv.png';
+  }
+
+  return $doctype_icon;
+}
+
+/**
+ * Implements hook_preprocess_easyddb_dams_media_browser_inline().
+ * @todo: Implement check for other type of files going through this function.
+ */
+function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
+  $file = $variables['element']['content']['file']['#file'];
+  $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
+  $audio_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_mp3.swf';
+  $video_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_video.swf';
+  // Setting up variables for the template
+  $variables['file_type']     = $file->type;
+  $variables['player'] = '';
+  if ($file->type == 'audio') {
+    $variables['player'] = $audio_player;
+  }
+  if ($file->type == 'video') {
+    $variables['player'] = $video_player;
+  }
+  $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
+  $variables['image_icon']    = $doctype_icon;
+  $variables['download_path'] = file_create_url($file->uri);
+}
+
+/**
+ * Implements hook_preprocess_easyddb_dams_media_browser_popup().
+ */
+function template_preprocess_easyddb_dams_media_browser_popup(&$variables) {
+  $file = $variables['element']['content']['file']['#file'];
+  $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
+  // Setting up variables for the template
+  $variables['file_type']     = $file->type;
+  $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
+  $variables['image_icon']    = $doctype_icon;
+  $variables['download_path'] = file_create_url($file->uri);
+}
+
+/**
+ * Implements hook_preprocess_easyddb_dams_media_browser_download_icon().
+ */
+function template_preprocess_easyddb_dams_media_browser_download_icon(&$variables) {
+  $file = $variables['element']['content']['file']['#file'];
+  $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
+
+  // Setting up variables for the template
+  $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
+  $variables['image_icon']    = $doctype_icon;
+  $variables['download_path'] = file_create_url($file->uri);
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function easyddb_dams_media_browser_page_alter(&$page) {
+  drupal_add_library('system', 'ui.dialog');
+  $audio_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_mp3.swf';
+  $video_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_video.swf';
+  drupal_add_js(drupal_get_path('module', 'easyddb_dams_media_browser') . '/js/easyddb_dams_media_browser.content.js');
+  drupal_add_js(array('easyddb_dams_media_browser' => array('audio_player' => $audio_player, 'video_player' => $video_player)), 'setting');
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function easyddb_dams_media_browser_js_alter(&$javascript) {
+  if (isset($javascript['misc/ajax.js'])) {
+    $javascript['misc/ajax.js']['weight'] = -20;
+  }
+}
+
+/**
+ * Implements template_preprocess_field().
+ *
+ * Set proper alt and title attributes to images.
+ *
+ * Affects:
+ *  library main image
+ *  library list image in search
+ *  side list image in search
+ *  news list image in search
+ *  news main image
+ *  news list image in taxonomy list
+ *  event main image
+ *  event list image in search
+ */
+function easyddb_dams_media_browser_preprocess_field(&$variables, $hook) {
+  $el = $variables['element'];
+
+  $field_names = array(
+    'field_main_image',
+    'field_list_image',
+    'field_header_image',
+    'field_page_list_image',
+  );
+
+  if (in_array($el['#field_name'], $field_names) && !empty($variables['items'])) {
+    $lng = $el['#language'];
+
+    // Set image title.
+    if (!empty($variables['items'][0]['#item']['field_file_image_title_text'])) {
+      $variables['items'][0]['#item']['title'] = $variables['items'][0]['#item']['field_file_image_title_text'][$lng][0]['safe_value'];
+    }
+
+    // Set image alt.
+    $variables['items'][0]['#item']['alt'] = $variables['items'][0]['#item']['title'];
+    if (!empty($variables['items'][0]['#item']['field_file_image_alt_text'])) {
+        $variables['items'][0]['#item']['alt'] = $variables['items'][0]['#item']['field_file_image_alt_text'][$lng][0]['safe_value'];
+    }
+
+  }
+}

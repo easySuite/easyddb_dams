@@ -1,0 +1,18 @@
+<?php
+/**
+ * @file
+ * EASYDDB DAMS Media Tracker module.
+ */
+
+/**
+ * Implements hook_media_browser_plugins_alter().
+ */
+function dams_media_tracker_media_browser_plugins_alter(&$plugins) {
+  $plugin_names = array_keys($plugins);
+  // NOTE: We use the fact that the displays were created in correct order.
+  foreach ($plugin_names as $name) {
+    drupal_add_js(drupal_get_path('module', 'ding_popup') . '/ding_popup.js');
+    drupal_add_css(drupal_get_path('module', 'dams_media_tracker') . '/css/dams_media_tracker.css');
+    drupal_add_js(drupal_get_path('module', 'dams_media_tracker') . '/js/dams_media_tracker.js');
+  }
+}

@@ -1,0 +1,118 @@
+<?php
+/**
+ * @file
+ * Code for DAMS module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function easyddb_dams_menu() {
+  $items = array();
+
+  $items['admin/easyddb_dams_media_manager'] = array(
+    'title' => 'Media manager',
+    'description' => 'Upload and manage the media library',
+    'page arguments' => array(),
+    'page callback' => 'easyddb_dams_media_manager_page',
+    'access arguments' => array('use easyddb dams'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function easyddb_dams_permission() {
+  return array(
+    'use easyddb dams' => array(
+      'title' => t('Use easyddb dams.'),
+      'description' => t('Allows use easyddb dams.'),
+    ),
+  );
+}
+
+/**
+ *  Implements hook_secure_permissions().
+ */
+function easyddb_dams_secure_permissions($role) {
+  $permissions = array(
+    'administrators' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+    'editor' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+    'local administrator' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+    'local editor' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
+  );
+  if (isset($permissions[$role])) {
+    return $permissions[$role];
+  }
+}
+
+/**
+ * Media manager page.
+ */
+function easyddb_dams_media_manager_page() {
+  $content = '';
+
+  if (module_exists('media')) {
+    module_load_include('inc', 'media', 'includes/media.browser');
+    $content = media_browser();
+  }
+
+  return $content;
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function easyddb_dams_page_alter(&$page) {
+  $args = arg();
+  $media_page = $args[0] == 'admin' && $args[1] == 'easyddb_dams_media_manager';
+  $media_browser = $args[0] == 'media' && $args[1] == 'browser';
+
+  if ($media_page || $media_browser) {
+    $css_file = drupal_get_path('module', 'easyddb_dams') . '/css/easyddb_dams.css';
+    drupal_add_css($css_file);
+    $js_file = drupal_get_path('module', 'easyddb_dams') . '/js/easyddb_dams.scripts.js';
+    drupal_add_js($js_file, array('scope' => 'footer'));
+  }
+
+  if ($media_page) {
+    $page['#theme'] = 'media_dialog_page';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function easyddb_dams_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'file_entity_add_upload' && arg(1) == 'easyddb_dams_media_manager') {
+    array_unshift($form['#submit'], 'easyddb_dams_add_upload_submit');
+  }
+  elseif($form_id == 'media_youtube_add') {
+    $form['#action'] = $form['#action'] . '#media-youtube-search-tab';
+  }
+}
+
+/**
+ * Custom submit for file upload.
+ *
+ * @see easyddb_dams_form_alter()
+ */
+function easyddb_dams_add_upload_submit($form, $form_state) {
+  // If file uploaded form DAMS page redirect to it, not to default page.
+  $_GET['destination'] = 'admin/easyddb_dams_media_manager';
+}
