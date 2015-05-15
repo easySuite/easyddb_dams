@@ -1,0 +1,279 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  easyddb_dams.module: n/a
+#  easyddb_dams.info: n/a
+#  modules/dams_media_tracker/dams_media_tracker.info: n/a
+#  modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info: n/a
+#  modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc: n/a
+#  modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module: n/a
+#  modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-02-19 16:15+0100\n"
+"PO-Revision-Date: 2015-05-15 14:04+0100\n"
+"Last-Translator: Martin Cording <mc@inlead.dk>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language: da\n"
+"X-Generator: Poedit 1.7.4\n"
+
+#: easyddb_dams.module:31
+msgid "Use easyddb dams."
+msgstr ""
+
+#: easyddb_dams.module:32
+msgid "Allows use easyddb dams."
+msgstr ""
+
+#: easyddb_dams.module:14
+msgid "Media manager"
+msgstr "Mediebibliotek"
+
+#: easyddb_dams.module:15
+msgid "Upload and manage the media library"
+msgstr "Upload og administrer medier"
+
+#: easyddb_dams.info:0
+msgid "easyDDB DAMS"
+msgstr ""
+
+#: easyddb_dams.info:0
+msgid "Digital Asset Management System"
+msgstr ""
+
+#: easyddb_dams.info:0 modules/dams_media_tracker/dams_media_tracker.info:0
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
+msgid "easyDDB"
+msgstr ""
+
+#: modules/dams_media_tracker/dams_media_tracker.info:0
+msgid "easyDDB DAMS Media Tracker"
+msgstr ""
+
+#: modules/dams_media_tracker/dams_media_tracker.info:0
+msgid "Digital Asset Management System Media Tracker"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:100;443
+msgid "Master"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:101;444
+msgid "more"
+msgstr "mere"
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:102;445
+msgid "Apply"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:103;446
+msgid "Reset"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:104;447
+msgid "Sort by"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:105;448
+msgid "Asc"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:106;449
+msgid "Desc"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:107;450
+msgid "Items per page"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:108;451
+msgid "- All -"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:109;452
+msgid "Offset"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:110;453
+msgid "« first"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:111;454
+msgid "‹ previous"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:112;455
+msgid "next ›"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:113;456
+msgid "last »"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:114;457
+msgid "No files available."
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:115;460
+msgid "Upload date"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:116
+msgid "Use count"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:117;462
+msgid "File name"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:118;463
+msgid "Type"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:119
+msgid "Media browser"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:120
+msgid "View Library"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:458
+msgid "Title"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:459
+msgid "Size"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:461
+msgid "Category"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:464
+msgid "DAMS Image"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:465
+msgid "Image"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:466
+msgid "File name/Title/Alternative name/Note/Credit"
+msgstr "Filnavn, titel, alt, etc."
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:467
+msgid "DAMS Video"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:468
+msgid "Video"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:469
+msgid "DAMS Audio"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:470
+msgid "Audio"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:471
+msgid "DAMS Document"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:472
+msgid "Document"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:133;178
+msgid "DAMS inline"
+msgstr "Inline"
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:137;182
+msgid "DAMS popup"
+msgstr "Popup"
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:141;159;186
+msgid "DAMS icon"
+msgstr "Som ikon"
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:145;152;163;190
+msgid "DAMS link"
+msgstr "Som link"
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:258
+msgid "Select media"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:271
+msgid "Edit media"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:288
+msgid "Remove media"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:335
+msgid "Could not retrieve the specified file."
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:346
+msgid "No file appears to have been selected."
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:349
+msgid "File upload error."
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
+msgid "easyDDB DAMS Media Browser"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
+msgid "Additional tabs for Media Browser"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:19
+msgid "Easyddb DAMS Document Plugin"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:22
+msgid "Insert document"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:44
+msgid "Easyddb DAMS Video Plugin"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:47
+msgid "Insert video"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:69
+msgid "Easyddb DAMS Audio Plugin"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:72
+msgid "Insert audio"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:94
+msgid "Easyddb DAMS Image Plugin"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:97
+msgid "Insert image"
+msgstr ""
+
+#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:158
+msgid "The <em>Convert Media tags to markup</em> filter must be enabled for the <a href=\"@format-link\">@format format</a> in order to use the Media browser WYSIWYG button."
+msgstr ""
