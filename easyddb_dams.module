@@ -55,6 +55,10 @@ function easyddb_dams_secure_permissions($role) {
       'access media browser',
       'use easyddb dams',
     ),
+    'guest blogger' => array(
+      'access media browser',
+      'use easyddb dams',
+    ),
   );
   if (isset($permissions[$role])) {
     return $permissions[$role];
