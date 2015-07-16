@@ -289,8 +289,8 @@ Drupal.wysiwyg.plugins.dams_image = {
     tagContent = {
       "type": 'media',
       // @todo: This will be selected from the format form
-      "view_mode": typeof attributes['view_mode'] !== undefined ? attributes['view_mode'] : 'default',
-      "fid": typeof attributes['fid'] !== undefined ? attributes['fid'] : 0,
+      "view_mode": typeof attributes['view_mode'] != "undefined" ? attributes['view_mode'].value : 'default',
+      "fid": typeof attributes['fid'] != "undefined" ? attributes['fid'].value : 0,
       "attributes": mediaAttributes
     };
     return '[[' + JSON.stringify(tagContent) + ']]';
