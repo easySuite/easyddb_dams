@@ -286,11 +286,19 @@ Drupal.wysiwyg.plugins.dams_image = {
     for (var blackList in Drupal.settings.media.blacklist) {
       delete mediaAttributes[Drupal.settings.media.blacklist[blackList]];
     }
+
+
+    if ( (typeof attributes['view_mode'] == "undefined" ||  typeof attributes['fid'] == "undefined") && typeof mediaAttributes["data-file_info"] != undefined) {
+      var data = decodeURIComponent(mediaAttributes["data-file_info"]);
+      var fid = data.match(/fid":"([^"]+)"/)[1];
+      var mode = data.match(/view_mode":"([^"]+)"/)[1];
+    };
+
     tagContent = {
       "type": 'media',
       // @todo: This will be selected from the format form
-      "view_mode": typeof attributes['view_mode'] != "undefined" ? attributes['view_mode'].value : 'default',
-      "fid": typeof attributes['fid'] != "undefined" ? attributes['fid'].value : 0,
+      "view_mode": typeof attributes['view_mode'] != "undefined" ? attributes['view_mode'].value : mode,
+      "fid": typeof attributes['fid'] != "undefined" ? attributes['fid'].value : fid,
       "attributes": mediaAttributes
     };
     return '[[' + JSON.stringify(tagContent) + ']]';
