@@ -49,13 +49,6 @@ function easyddb_dams_media_browser_views_default_views() {
   $handler->display->display_options['fields']['filename']['label'] = '';
   $handler->display->display_options['fields']['filename']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['filename']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['filename']['link_to_file'] = TRUE;
-  /* Sort criterion: File: Title (field_dams_title) */
-  $handler->display->display_options['sorts']['field_dams_title_value']['id'] = 'field_dams_title_value';
-  $handler->display->display_options['sorts']['field_dams_title_value']['table'] = 'field_data_field_dams_title';
-  $handler->display->display_options['sorts']['field_dams_title_value']['field'] = 'field_dams_title_value';
-  $handler->display->display_options['sorts']['field_dams_title_value']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['field_dams_title_value']['expose']['label'] = 'Title';
   /* Sort criterion: File: Size */
   $handler->display->display_options['sorts']['filesize']['id'] = 'filesize';
   $handler->display->display_options['sorts']['filesize']['table'] = 'file_managed';
@@ -69,12 +62,6 @@ function easyddb_dams_media_browser_views_default_views() {
   $handler->display->display_options['sorts']['timestamp']['order'] = 'DESC';
   $handler->display->display_options['sorts']['timestamp']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['timestamp']['expose']['label'] = 'Upload date';
-  /* Sort criterion: File: Category (field_dams_category) */
-  $handler->display->display_options['sorts']['field_dams_category_tid']['id'] = 'field_dams_category_tid';
-  $handler->display->display_options['sorts']['field_dams_category_tid']['table'] = 'field_data_field_dams_category';
-  $handler->display->display_options['sorts']['field_dams_category_tid']['field'] = 'field_dams_category_tid';
-  $handler->display->display_options['sorts']['field_dams_category_tid']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['field_dams_category_tid']['expose']['label'] = 'Category';
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'OR',
     2 => 'AND',
@@ -139,19 +126,6 @@ function easyddb_dams_media_browser_views_default_views() {
     6 => 0,
     3 => 0,
   );
-  /* Filter criterion: File: Category (field_dams_category) */
-  $handler->display->display_options['filters']['field_dams_category_tid']['id'] = 'field_dams_category_tid';
-  $handler->display->display_options['filters']['field_dams_category_tid']['table'] = 'field_data_field_dams_category';
-  $handler->display->display_options['filters']['field_dams_category_tid']['field'] = 'field_dams_category_tid';
-  $handler->display->display_options['filters']['field_dams_category_tid']['group'] = 2;
-  $handler->display->display_options['filters']['field_dams_category_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_dams_category_tid']['expose']['operator_id'] = 'field_dams_category_tid_op';
-  $handler->display->display_options['filters']['field_dams_category_tid']['expose']['label'] = 'Category';
-  $handler->display->display_options['filters']['field_dams_category_tid']['expose']['operator'] = 'field_dams_category_tid_op';
-  $handler->display->display_options['filters']['field_dams_category_tid']['expose']['identifier'] = 'field_dams_category_tid';
-  $handler->display->display_options['filters']['field_dams_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_dams_category_tid']['vocabulary'] = 'dams_category';
-  $handler->display->display_options['filters']['field_dams_category_tid']['hierarchy'] = 1;
   /* Filter criterion: File: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'file_managed';
@@ -172,6 +146,28 @@ function easyddb_dams_media_browser_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['status']['group'] = 2;
+  /* Filter criterion: File: Category (field_file_category) */
+  $handler->display->display_options['filters']['field_file_category_tid']['id'] = 'field_file_category_tid';
+  $handler->display->display_options['filters']['field_file_category_tid']['table'] = 'field_data_field_file_category';
+  $handler->display->display_options['filters']['field_file_category_tid']['field'] = 'field_file_category_tid';
+  $handler->display->display_options['filters']['field_file_category_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_file_category_tid']['expose']['operator_id'] = 'field_file_category_tid_op';
+  $handler->display->display_options['filters']['field_file_category_tid']['expose']['label'] = 'Category (field_file_category)';
+  $handler->display->display_options['filters']['field_file_category_tid']['expose']['operator'] = 'field_file_category_tid_op';
+  $handler->display->display_options['filters']['field_file_category_tid']['expose']['identifier'] = 'field_file_category_tid';
+  $handler->display->display_options['filters']['field_file_category_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_file_category_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_file_category_tid']['vocabulary'] = 'category';
 
   /* Display: DAMS Video */
   $handler = $view->new_display('media_browser', 'DAMS Video', 'media_browser_3');
@@ -199,7 +195,7 @@ function easyddb_dams_media_browser_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['status']['group'] = 1;
-  /* Filter criterion: File: Category (field_dams_category) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_dams_category_tid']['id'] = 'field_dams_category_tid';
   $handler->display->display_options['filters']['field_dams_category_tid']['table'] = 'field_data_field_dams_category';
   $handler->display->display_options['filters']['field_dams_category_tid']['field'] = 'field_dams_category_tid';
@@ -209,9 +205,6 @@ function easyddb_dams_media_browser_views_default_views() {
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['label'] = 'Category';
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['operator'] = 'field_dams_category_tid_op';
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['identifier'] = 'field_dams_category_tid';
-  $handler->display->display_options['filters']['field_dams_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_dams_category_tid']['vocabulary'] = 'dams_category';
-  $handler->display->display_options['filters']['field_dams_category_tid']['hierarchy'] = 1;
   /* Filter criterion: File: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'file_managed';
@@ -251,7 +244,7 @@ function easyddb_dams_media_browser_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['status']['group'] = 1;
-  /* Filter criterion: File: Category (field_dams_category) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_dams_category_tid']['id'] = 'field_dams_category_tid';
   $handler->display->display_options['filters']['field_dams_category_tid']['table'] = 'field_data_field_dams_category';
   $handler->display->display_options['filters']['field_dams_category_tid']['field'] = 'field_dams_category_tid';
@@ -261,9 +254,6 @@ function easyddb_dams_media_browser_views_default_views() {
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['label'] = 'Category';
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['operator'] = 'field_dams_category_tid_op';
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['identifier'] = 'field_dams_category_tid';
-  $handler->display->display_options['filters']['field_dams_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_dams_category_tid']['vocabulary'] = 'dams_category';
-  $handler->display->display_options['filters']['field_dams_category_tid']['hierarchy'] = 1;
   /* Filter criterion: File: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'file_managed';
@@ -295,7 +285,7 @@ function easyddb_dams_media_browser_views_default_views() {
   $handler->display->display_options['filters']['filename']['expose']['label'] = 'File name/Title/Alternative name/Note/Credit';
   $handler->display->display_options['filters']['filename']['expose']['operator'] = 'filename_op';
   $handler->display->display_options['filters']['filename']['expose']['identifier'] = 'look_for';
-  /* Filter criterion: File: Category (field_dams_category) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_dams_category_tid']['id'] = 'field_dams_category_tid';
   $handler->display->display_options['filters']['field_dams_category_tid']['table'] = 'field_data_field_dams_category';
   $handler->display->display_options['filters']['field_dams_category_tid']['field'] = 'field_dams_category_tid';
@@ -305,9 +295,6 @@ function easyddb_dams_media_browser_views_default_views() {
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['label'] = 'Category';
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['operator'] = 'field_dams_category_tid_op';
   $handler->display->display_options['filters']['field_dams_category_tid']['expose']['identifier'] = 'field_dams_category_tid';
-  $handler->display->display_options['filters']['field_dams_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_dams_category_tid']['vocabulary'] = 'dams_category';
-  $handler->display->display_options['filters']['field_dams_category_tid']['hierarchy'] = 1;
   /* Filter criterion: File: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'file_managed';
@@ -344,17 +331,17 @@ function easyddb_dams_media_browser_views_default_views() {
     t('next ›'),
     t('last »'),
     t('No files available.'),
-    t('Title'),
     t('Size'),
     t('Upload date'),
-    t('Category'),
     t('File name'),
     t('Type'),
     t('DAMS Image'),
     t('Image'),
     t('File name/Title/Alternative name/Note/Credit'),
+    t('Category (field_file_category)'),
     t('DAMS Video'),
     t('Video'),
+    t('Category'),
     t('DAMS Audio'),
     t('Audio'),
     t('DAMS Document'),
