@@ -3,19 +3,19 @@
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-#  easyddb_dams.module: n/a
-#  easyddb_dams.info: n/a
-#  modules/dams_media_tracker/dams_media_tracker.info: n/a
-#  modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info: n/a
-#  modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc: n/a
-#  modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module: n/a
-#  modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc: n/a
+#  profiles/ding2/modules/easyddb_dams/easyddb_dams.module: n/a
+#  profiles/ding2/modules/easyddb_dams/easyddb_dams.info: n/a
+#  profiles/ding2/modules/easyddb_dams/modules/dams_media_tracker/dams_media_tracker.info: n/a
+#  profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info: n/a
+#  profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc: n/a
+#  profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module: n/a
+#  profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc: n/a
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-02-19 16:15+0100\n"
+"POT-Creation-Date: 2015-07-28 11:34+0300\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -24,255 +24,243 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: easyddb_dams.module:31
+#: profiles/ding2/modules/easyddb_dams/easyddb_dams.module:31
 msgid "Use easyddb dams."
 msgstr ""
 
-#: easyddb_dams.module:32
+#: profiles/ding2/modules/easyddb_dams/easyddb_dams.module:32
 msgid "Allows use easyddb dams."
 msgstr ""
 
-#: easyddb_dams.module:14
+#: profiles/ding2/modules/easyddb_dams/easyddb_dams.module:14
 msgid "Media manager"
 msgstr ""
 
-#: easyddb_dams.module:15
+#: profiles/ding2/modules/easyddb_dams/easyddb_dams.module:15
 msgid "Upload and manage the media library"
 msgstr ""
 
-#: easyddb_dams.info:0
+#: profiles/ding2/modules/easyddb_dams/easyddb_dams.info:0
 msgid "easyDDB DAMS"
 msgstr ""
 
-#: easyddb_dams.info:0
+#: profiles/ding2/modules/easyddb_dams/easyddb_dams.info:0
 msgid "Digital Asset Management System"
 msgstr ""
 
-#: easyddb_dams.info:0 modules/dams_media_tracker/dams_media_tracker.info:0 modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
+#: profiles/ding2/modules/easyddb_dams/easyddb_dams.info:0 profiles/ding2/modules/easyddb_dams/modules/dams_media_tracker/dams_media_tracker.info:0 profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
 msgid "easyDDB"
 msgstr ""
 
-#: modules/dams_media_tracker/dams_media_tracker.info:0
+#: profiles/ding2/modules/easyddb_dams/modules/dams_media_tracker/dams_media_tracker.info:0
 msgid "easyDDB DAMS Media Tracker"
 msgstr ""
 
-#: modules/dams_media_tracker/dams_media_tracker.info:0
+#: profiles/ding2/modules/easyddb_dams/modules/dams_media_tracker/dams_media_tracker.info:0
 msgid "Digital Asset Management System Media Tracker"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:100;443
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:332
 msgid "Master"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:101;444
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:333
 msgid "more"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:102;445
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:334
 msgid "Apply"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:103;446
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:335
 msgid "Reset"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:104;447
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:336
 msgid "Sort by"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:105;448
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:337
 msgid "Asc"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:106;449
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:338
 msgid "Desc"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:107;450
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:339
 msgid "Items per page"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:108;451
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:340
 msgid "- All -"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:109;452
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:341
 msgid "Offset"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:110;453
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:342
 msgid "« first"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:111;454
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:343
 msgid "‹ previous"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:112;455
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:344
 msgid "next ›"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:113;456
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:345
 msgid "last »"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:114;457
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:346
 msgid "No files available."
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:115;460
-msgid "Upload date"
-msgstr ""
-
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:116
-msgid "Use count"
-msgstr ""
-
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:117;462
-msgid "File name"
-msgstr ""
-
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:118;463
-msgid "Type"
-msgstr ""
-
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:119
-msgid "Media browser"
-msgstr ""
-
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:120
-msgid "View Library"
-msgstr ""
-
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:458
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:347
 msgid "Title"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:459
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:348
 msgid "Size"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:461
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:349
+msgid "Upload date"
+msgstr ""
+
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:350
 msgid "Category"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:464
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:351
+msgid "File name"
+msgstr ""
+
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:352
+msgid "Type"
+msgstr ""
+
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:353
 msgid "DAMS Image"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:465
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:354
 msgid "Image"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:466
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:355
 msgid "File name/Title/Alternative name/Note/Credit"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:467
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:356
 msgid "DAMS Video"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:468
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:357
 msgid "Video"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:469
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:358
 msgid "DAMS Audio"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:470
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:359
 msgid "Audio"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:471
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:360
 msgid "DAMS Document"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:472
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.views_default.inc:361
 msgid "Document"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:133;178
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:133;178
 msgid "DAMS inline"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:137;182
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:137;182
 msgid "DAMS popup"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:141;159;186
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:141;159;186
 msgid "DAMS icon"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:145;152;163;190
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:145;152;163;190
 msgid "DAMS link"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:258
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:269
 msgid "Select media"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:271
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:282
 msgid "Edit media"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:288
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:299
 msgid "Remove media"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:335
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:346
 msgid "Could not retrieve the specified file."
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:346
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:357
 msgid "No file appears to have been selected."
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:349
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.module:360
 msgid "File upload error."
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
 msgid "easyDDB DAMS Media Browser"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
 msgid "Additional tabs for Media Browser"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:19
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:19
 msgid "Easyddb DAMS Document Plugin"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:22
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:22
 msgid "Insert document"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:44
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:44
 msgid "Easyddb DAMS Video Plugin"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:47
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:47
 msgid "Insert video"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:69
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:69
 msgid "Easyddb DAMS Audio Plugin"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:72
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:72
 msgid "Insert audio"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:94
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:94
 msgid "Easyddb DAMS Image Plugin"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:97
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:97
 msgid "Insert image"
 msgstr ""
 
-#: modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:158
+#: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:158
 msgid "The <em>Convert Media tags to markup</em> filter must be enabled for the <a href=\"@format-link\">@format format</a> in order to use the Media browser WYSIWYG button."
 msgstr ""
 
