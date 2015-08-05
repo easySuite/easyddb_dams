@@ -1,0 +1,86 @@
+<?php
+/**
+ * @file
+ *
+ * Install/uninstall of DAMS modules
+ */
+
+/**
+ * Helper function to import terms into vocabulary from given file
+ */
+function _easyddb_dams_taxonomy_import($file_path, $vocabulary_machine_name) {
+  $handle = fopen($file_path, "r");
+  $vocabulary = taxonomy_vocabulary_machine_name_load($vocabulary_machine_name);
+
+  if ($vocabulary && $handle !== FALSE) {
+
+    // Import taxonomies
+    $weight = 0;
+    while (($raw_term = fgetcsv($handle, 1000, ",")) !== FALSE) {
+      $term = new stdClass();
+      $term->vid    = $vocabulary->vid;
+      $term->name   = $raw_term[0];
+      $term->weight = $weight++;
+      taxonomy_term_save($term);
+    }
+
+    fclose($handle);
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Implements hook_install().
+ */
+function easyddb_dams_taxonomy_install() {
+  // Fill up the taxonomy with the supplied terms
+  // TODO: If there will be more than 1 vocabulary, make a generic loader for machine names
+  $existing_terms = array();
+  $vocabulary = taxonomy_vocabulary_machine_name_load('dams_category');
+  $path_to_terms = drupal_get_path("module", "easyddb_dams_taxonomy") . "/easyddb_dams_taxonomy.csv";
+
+  // Check first if vocabulary exists and is not empty:
+  if ($vocabulary) {
+    $existing_terms = taxonomy_get_tree($vocabulary->vid);
+  }
+  $empty_vocabulary = ($vocabulary) && (empty($existing_terms));
+  // Add terms if vocabulary is empty
+  if ($empty_vocabulary) {
+    $imported = _easyddb_dams_taxonomy_import($path_to_terms, 'dams_category');
+    if ($imported) {
+      drupal_set_message(t('Existing empty vocabulary filled with dummy terms.'));
+    }
+    else {
+      drupal_set_message(t('Terms not imported: could not open file.'), 'error');
+    }
+  }
+  // Create and fill vocabulary with terms
+  elseif (!$vocabulary) {
+    // Creating the vocabularies
+    $vocabularies_to_import = array(
+      'dams_category' => array(
+        'name' => 'EasyDDB DAMS Category',
+        'machine_name' => 'dams_category',
+        'description' => 'Categories used for DAMS',
+      ),
+    );
+
+    foreach ($vocabularies_to_import as $new_vocabulary) {
+      $new_vocabulary = (object) $new_vocabulary;
+      taxonomy_vocabulary_save($new_vocabulary);
+    }
+
+    $imported = _easyddb_dams_taxonomy_import($path_to_terms, 'dams_category');
+    if ($imported) {
+      drupal_set_message(t('Vocabularies created and filled with dummy terms.'));
+    }
+    else {
+      drupal_set_message(t('Terms not imported: could not open file.'), 'error');
+    }
+  }
+  elseif (!$empty_vocabulary) {
+    drupal_set_message(t('Vocabulary already exists and is not empty, no dummy terms imported.'));
+  }
+}
