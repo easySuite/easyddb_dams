@@ -288,7 +288,7 @@ Drupal.wysiwyg.plugins.dams_image = {
     }
 
 
-    if ( (typeof attributes['view_mode'] == "undefined" ||  typeof attributes['fid'] == "undefined") && typeof mediaAttributes["data-file_info"] != undefined) {
+    if ( (typeof attributes['view_mode'] == "undefined" ||  typeof attributes['fid'] == "undefined") && typeof mediaAttributes["data-file_info"] != "undefined") {
       var data = decodeURIComponent(mediaAttributes["data-file_info"]);
       var fid = data.match(/fid":"([^"]+)"/)[1];
       var mode = data.match(/view_mode":"([^"]+)"/)[1];
