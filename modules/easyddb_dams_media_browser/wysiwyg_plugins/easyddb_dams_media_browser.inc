@@ -16,7 +16,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert document only plugin definition
   $plugins['dams_document'] = array(
-    'title' => t('Easyddb DAMS Document Plugin'),
+    'title' => t('easyDDB DAMS Document Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-document.png',
     'icon title' => t('Insert document'),
@@ -41,7 +41,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert video only plugin definition
   $plugins['dams_video'] = array(
-    'title' => t('Easyddb DAMS Video Plugin'),
+    'title' => t('easyDDB DAMS Video Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-video.png',
     'icon title' => t('Insert video'),
@@ -66,7 +66,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert audio only plugin definition
   $plugins['dams_audio'] = array(
-    'title' => t('Easyddb DAMS Audio Plugin'),
+    'title' => t('easyDDB DAMS Audio Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-audio.png',
     'icon title' => t('Insert audio'),
@@ -91,7 +91,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert image only plugin definition
   $plugins['dams_image'] = array(
-    'title' => t('Easyddb DAMS Image Plugin'),
+    'title' => t('easyDDB DAMS Image Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-image.png',
     'icon title' => t('Insert image'),
