@@ -120,3 +120,13 @@ function easyddb_dams_add_upload_submit($form, $form_state) {
   // If file uploaded form DAMS page redirect to it, not to default page.
   $_GET['destination'] = 'admin/easyddb_dams_media_manager';
 }
+
+/**
+ * Implements hook_media_wysiwyg_token_to_markup_alter().
+ */
+function easyddb_dams_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
+  $is_image = (empty(file_validate_is_image($tag_info['file'])));
+  if ('node' == arg(0) && $is_image && 'teaser' == $tag_info['view_mode']) {
+    unset($element['content']['file']['#path']);
+  }
+}
