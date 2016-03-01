@@ -59,7 +59,7 @@ Drupal.wysiwyg.plugins.dams_image = {
     if (viewMode === 'easyddb_dams_media_browser_download_link') {
       var alt = (mediaFile.alt !== undefined) ? mediaFile.alt : '';
       var title = (mediaFile.title !== undefined) ? mediaFile.title : '';
-      imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
+      imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '" target="_blank">' + mediaFile.filename + '</a>');
     }
 
     this.addImageAttributes(imgElement, mediaFile, viewMode, options);

@@ -229,7 +229,7 @@ msgid "Additional tabs for Media Browser"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:19
-msgid "Easyddb DAMS Document Plugin"
+msgid "easyDDB DAMS Document Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:22
@@ -237,7 +237,7 @@ msgid "Insert document"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:44
-msgid "Easyddb DAMS Video Plugin"
+msgid "easyDDB DAMS Video Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:47
@@ -245,7 +245,7 @@ msgid "Insert video"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:69
-msgid "Easyddb DAMS Audio Plugin"
+msgid "easyDDB DAMS Audio Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:72
@@ -253,7 +253,7 @@ msgid "Insert audio"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:94
-msgid "Easyddb DAMS Image Plugin"
+msgid "easyDDB DAMS Image Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:97
