@@ -2,5 +2,5 @@ name = "easyDDB DAMS"
 description = "Digital Asset Management System"
 core = "7.x"
 package = "easyDDB"
-version = 7.x-2.2.0+easy
+version = 7.x-2.4.4+easy
 dependencies[] = "media"
