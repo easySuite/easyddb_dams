@@ -46,6 +46,7 @@ Drupal.wysiwyg.plugins.dams_video = {
   },
 
   insertMediaFile: function (mediaFile, viewMode, formattedMedia, options, wysiwygInstance) {
+    var imgElement;
 
     this.initializeTagMap();
     // @TODO: the folks @ ckeditor have told us that there is no way
@@ -53,9 +54,9 @@ Drupal.wysiwyg.plugins.dams_video = {
     // There is some method of adeasyddb a "fake element"
     // But until then, we're just going to embed to img.
     // This is pretty hacked for now.
-    //
+
     if (viewMode === 'easyddb_dams_media_browser_download_icon' || viewMode === 'easyddb_dams_media_browser_popup') {
-      var imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_flv.png"/>');
+      imgElement = $('<img src="' + Drupal.settings.easyddb_dams_media_browser.icon_path + 'doc_flv.png"/>');
     }
     else if (viewMode === 'easyddb_dams_media_browser_download_link') {
       var alt = (mediaFile.alt !== undefined) ? mediaFile.alt : '';
@@ -63,17 +64,9 @@ Drupal.wysiwyg.plugins.dams_video = {
       imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
     }
     if (viewMode === 'easyddb_dams_media_browser_inline') {
-      var imgElement = $('<object class="easyddb-dams-inline" type="application/x-shockwave-flash" \
-data="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" width="640" height="360">\
-<param name="movie" value="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" />\
-<param name="allowFullScreen" value="true" />\
-<param name="wmode" value="opaque" />\
-<param name="FlashVars" value="controlbar=over&file=' + mediaFile.url + '" />\
-<embed href="' + Drupal.settings.easyddb_dams_media_browser.video_player + '" bgcolor="#085c68" width="640" \
-height="360" wmode="opaque" allowFullScreen="true" name="movie" align=""\
-type="application/x-shockwave-flash" flashvars="controlbar=over&file=' + mediaFile.url + '">\
-</embed>\
-</object>');
+      imgElement = $('<video width="640" height="360" controls>' +
+        '<source src="' + mediaFile.url + ' "type="video/mp4"></source>' +
+      '</video>');
     }
     this.addImageAttributes(imgElement, mediaFile.fid, viewMode, options);
 
