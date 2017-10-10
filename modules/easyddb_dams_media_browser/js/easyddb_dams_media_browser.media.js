@@ -2,8 +2,8 @@
  *  @file
  *  This file handles the JS for Media Module functions.
  */
-
 (function ($) {
+  'use strict';
 /**
  * Loads media browsers and callbacks, specifically for media as a field.
  */
