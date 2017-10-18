@@ -244,17 +244,6 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
   // Set some default element properties.
   $element['#file'] = $file;
 
-  $element['title'] = array(
-    '#type' => 'item',
-    '#title' => $element['#title'],
-    '#description' => $element['#description'],
-    '#required' => $element['#required'],
-    '#weight' => -100,
-  );
-  if (isset($element['#title_display'])) {
-    $element['title']['#title_display'] = $element['#title_display'];
-  }
-
   // @todo This should be loaded from the JS in case of a failed form submission.
   $element['preview'] = array(
     '#prefix' => '<div class="preview launcher">',
@@ -274,7 +263,6 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
     ),
     '#weight' => 10,
   );
-
 
   $element['edit'] = array(
     '#type' => 'link',
@@ -316,18 +304,16 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
   $element['#attached']['js'][] = drupal_get_path('module', 'easyddb_dams_media_browser') . '/js/easyddb_dams_media_browser.media.js';
 
   $setting = array();
-  $setting['media']['elements'][$element['#id']] = $element['#media_options'];
-
+  // Prepend "--widget" to the ID based on theme_media_widget().
+  $setting['media']['elements'][$element['#id'] . '--widget'] = $element['#media_options'];
   $element['#attached']['js'][] = array(
     'type' => 'setting',
     'data' => $setting,
   );
-
   // hmm... Might need to think about this.
   // All settings would likely apply to all media in a multi-value, but what about passing the existing fid?
-
-  module_load_include('inc', 'media', 'includes/media.browser');
-  media_attach_browser_js($element);
+  $element['#attached']['library'][] = array('media', 'media_browser');
+  $element['#attached']['library'][] = array('media', 'media_browser_settings');
 
   return $element;
   // @todo: make this work for file and image fields
