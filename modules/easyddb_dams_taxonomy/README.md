@@ -1,4 +1,4 @@
-easyDDB DAMS Taxonomy
+easyOPAC DAMS Taxonomy
 ==========
 
 Module creates vocabulary and loads default terms in it.

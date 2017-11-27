@@ -1,4 +1,4 @@
-easyDDB DAMS Media Tracker
+easyOPAC DAMS Media Tracker
 ==========
 
 Module adds "Track" button for image selected in media manager.

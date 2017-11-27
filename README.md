@@ -1,4 +1,4 @@
-easyDDB DAMS
+easyOPAC DAMS
 ==========
 
 Module extends default Media manager and WYSIWYG.

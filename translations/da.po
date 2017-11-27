@@ -42,7 +42,7 @@ msgid "Upload and manage the media library"
 msgstr "Upload og administrer medier"
 
 #: profiles/ding2/modules/easyddb_dams/easyddb_dams.info:0
-msgid "easyDDB DAMS"
+msgid "easyOPAC DAMS"
 msgstr "DAMS"
 
 #: profiles/ding2/modules/easyddb_dams/easyddb_dams.info:0
@@ -52,11 +52,11 @@ msgstr ""
 #: profiles/ding2/modules/easyddb_dams/easyddb_dams.info:0
 #: profiles/ding2/modules/easyddb_dams/modules/dams_media_tracker/dams_media_tracker.info:0
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
-msgid "easyDDB"
+msgid "easyOPAC"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/dams_media_tracker/dams_media_tracker.info:0
-msgid "easyDDB DAMS Media Tracker"
+msgid "easyOPAC DAMS Media Tracker"
 msgstr "DAMS tracking"
 
 #: profiles/ding2/modules/easyddb_dams/modules/dams_media_tracker/dams_media_tracker.info:0
@@ -238,7 +238,7 @@ msgid "File upload error."
 msgstr "Fejl under upload."
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
-msgid "easyDDB DAMS Media Browser"
+msgid "easyOPAC DAMS Media Browser"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/easyddb_dams_media_browser.info:0
@@ -246,7 +246,7 @@ msgid "Additional tabs for Media Browser"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:19
-msgid "easyDDB DAMS Document Plugin"
+msgid "easyOPAC DAMS Document Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:22
@@ -254,7 +254,7 @@ msgid "Insert document"
 msgstr "Indsæt dokument"
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:44
-msgid "easyDDB DAMS Video Plugin"
+msgid "easyOPAC DAMS Video Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:47
@@ -262,7 +262,7 @@ msgid "Insert video"
 msgstr "Indsæt video"
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:69
-msgid "easyDDB DAMS Audio Plugin"
+msgid "easyOPAC DAMS Audio Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:72
@@ -270,7 +270,7 @@ msgid "Insert audio"
 msgstr "Indsæt lyd"
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:94
-msgid "easyDDB DAMS Image Plugin"
+msgid "easyOPAC DAMS Image Plugin"
 msgstr ""
 
 #: profiles/ding2/modules/easyddb_dams/modules/easyddb_dams_media_browser/wysiwyg_plugins/easyddb_dams_media_browser.inc:97
