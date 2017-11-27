@@ -1,4 +1,4 @@
-easyDDB DAMS Media Browser
+easyOPAC DAMS Media Browser
 ==========
 
 Module adds additional tabs in media browser
