@@ -23,12 +23,15 @@ Drupal.behaviors.mediaElement = {
       var previewField = $('.preview', this);
       var editButton = $('.edit', this);
       var removeButton = $('.remove', this);
+      var attachButton = $('.attach', this);
 
       // Hide the edit and remove buttons if there is no file data yet.
       if (fidField.val() == 0) {
         editButton.hide();
         removeButton.hide();
       }
+
+      attachButton.hide();
 
       // When someone clicks the link to pick media (or clicks on an existing thumbnail)
       $('.launcher', this).bind('click', function () {
@@ -48,6 +51,9 @@ Drupal.behaviors.mediaElement = {
           }
           // Set the preview field HTML.
           previewField.html(mediaFile.preview);
+
+          // Trigger attach button.
+          attachButton.trigger('mousedown');
         }, globalOptions);
         return false;
       });
