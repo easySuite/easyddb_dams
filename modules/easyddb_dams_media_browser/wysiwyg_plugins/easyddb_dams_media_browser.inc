@@ -16,7 +16,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert document only plugin definition
   $plugins['dams_document'] = array(
-    'title' => t('easyDDB DAMS Document Plugin'),
+    'title' => t('easyOPAC DAMS Document Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-document.png',
     'icon title' => t('Insert document'),
@@ -41,7 +41,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert video only plugin definition
   $plugins['dams_video'] = array(
-    'title' => t('easyDDB DAMS Video Plugin'),
+    'title' => t('easyOPAC DAMS Video Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-video.png',
     'icon title' => t('Insert video'),
@@ -66,7 +66,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert audio only plugin definition
   $plugins['dams_audio'] = array(
-    'title' => t('easyDDB DAMS Audio Plugin'),
+    'title' => t('easyOPAC DAMS Audio Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-audio.png',
     'icon title' => t('Insert audio'),
@@ -91,7 +91,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
 
   // Insert image only plugin definition
   $plugins['dams_image'] = array(
-    'title' => t('easyDDB DAMS Image Plugin'),
+    'title' => t('easyOPAC DAMS Image Plugin'),
     'icon path' => drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images',
     'icon file' => 'wysiwyg-dams-image.png',
     'icon title' => t('Insert image'),
@@ -128,18 +128,9 @@ function easyddb_dams_media_browser_include_browser_js() {
     return;
   }
   $included = TRUE;
-  module_load_include('inc', 'media', 'includes/media.browser');
-  $javascript = media_browser_js();
-  foreach ($javascript as $key => $definitions) {
-    foreach ($definitions as $definition) {
-      $function = 'drupal_add_' . $key;
-      // Since the arguments to pass are variable, use call_user_func_array().
-      // This will not handle all potential drupal_add_*() functions directly
-      // but covers the js and library needed here, which are unlikely to be
-      // expanded since this function is only a workaround for a wysiwyg limitation.
-      call_user_func_array($function, $definition);
-    }
-  }
+  drupal_add_library('media', 'media_browser');
+  drupal_add_library('media', 'media_browser_settings');
+
   // Add wysiwyg-specific settings.
   $settings = array('blacklist' => array('src', 'fid', 'view_mode', 'format'));
   drupal_add_js(array('media' => $settings), 'setting');
