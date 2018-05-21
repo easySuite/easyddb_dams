@@ -12,10 +12,10 @@ Drupal.behaviors.mediaElement = {
     // Options set from media.fields.inc for the types, etc to show in the browser.
 
     // For each widget (in case of multi-entry)
-    $('.media-widget', context).once('mediaBrowserLaunch', function () {
+    $('.media-widget, td', context).once('mediaBrowserLaunch', function () {
       var options = settings.media.elements[this.id];
       globalOptions = {};
-      if (options.global != undefined) {
+      if (options && options.global != undefined) {
         var globalOptions = options.global;
       }
       //options = Drupal.settings.media.fields[this.id];
@@ -49,8 +49,9 @@ Drupal.behaviors.mediaElement = {
           if (mediaFile.wasSelected == undefined) {
             editButton.trigger('click');
           }
+
           // Set the preview field HTML.
-          previewField.html(mediaFile.preview);
+          $('.media-item').html(mediaFile.preview);
 
           // Trigger attach button.
           attachButton.trigger('mousedown');
