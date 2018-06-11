@@ -13,20 +13,20 @@ Drupal.behaviors.mediaElement = {
 
     // For each widget (in case of multi-entry)
     $('.media-widget, td', context).once('mediaBrowserLaunch', function () {
-      var options = settings.media.elements[this.id];
-      globalOptions = {};
-      if (options && options.global != undefined) {
-        var globalOptions = options.global;
+      let options = settings.media.elements[this.id];
+      let globalOptions = {};
+      if (options && options.global !== undefined) {
+        globalOptions = options.global;
       }
-      //options = Drupal.settings.media.fields[this.id];
-      var fidField = $('.fid', this);
-      var previewField = $('.preview', this);
-      var editButton = $('.edit', this);
-      var removeButton = $('.remove', this);
-      var attachButton = $('.attach', this);
+      // options = Drupal.settings.media.fields[this.id];
+      let fidField = $('.fid', this);
+      let previewField = $('.preview', this);
+      let editButton = $('.edit', this);
+      let removeButton = $('.remove', this);
+      let attachButton = $('.attach', this);
 
       // Hide the edit and remove buttons if there is no file data yet.
-      if (fidField.val() == 0) {
+      if (fidField.val() === 0) {
         editButton.hide();
         removeButton.hide();
       }
@@ -34,24 +34,24 @@ Drupal.behaviors.mediaElement = {
       attachButton.hide();
 
       // When someone clicks the link to pick media (or clicks on an existing thumbnail)
-      $('.launcher', this).bind('click', function () {
-        // Launch the browser, provieasyddb the following callback function
-        // @TODO: This should not be an anomyous function.
+      $('.launcher', this).on('click', function () {
+        // Launch the browser, provide the following callback function.
+        // @TODO: This should not be an anonymous function.
         Drupal.media.popups.mediaBrowser(function (mediaFiles) {
           if (mediaFiles.length < 0) {
             return;
           }
-          var mediaFile = mediaFiles[0];
-          // Set the value of the filefield fid (hidden) and trigger a change.
+          let mediaFile = mediaFiles[0];
+          // Set the value of the file field fid (hidden) and trigger a change.
           fidField.val(mediaFile.fid);
           fidField.trigger('change');
 
-          if (mediaFile.wasSelected == undefined) {
+          if (mediaFile.wasSelected === undefined) {
             editButton.trigger('click');
           }
 
           // Set the preview field HTML.
-          $('.media-item').html(mediaFile.preview);
+          $(previewField).html(mediaFile.preview);
 
           // Trigger attach button.
           attachButton.trigger('mousedown');
@@ -60,20 +60,21 @@ Drupal.behaviors.mediaElement = {
       });
 
       // When someone clicks the Remove button.
-      $('.remove', this).bind('click', function () {
-        // Set the value of the filefield fid (hidden) and trigger change.
+      $('.remove', this).on('click', function () {
+        // Set the value of the file field fid (hidden) and trigger change.
         fidField.val(0);
         fidField.trigger('change');
         // Set the preview field HTML.
         previewField.html('');
+
         return false;
       });
 
       // Show or hide the edit/remove buttons if the field has a file or not.
-      $('.fid', this).bind('change', function() {
-        var fid = fidField.val();
+      $('.fid', this).on('change', function() {
+        let fid = fidField.val();
 
-        if (fid == 0) {
+        if (fid === 0) {
           editButton.hide();
           removeButton.hide();
         }
@@ -92,5 +93,4 @@ Drupal.behaviors.mediaElement = {
     });
   }
 };
-
 })(jQuery);
