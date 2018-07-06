@@ -399,6 +399,9 @@ function easyddb_dams_media_browser_media_wysiwyg_token_to_markup_alter(&$elemen
     }
     $element['#theme'] = $theming_function;
   }
+
+  // Remove image category from rendering.
+  unset($element['content']['field_dams_category']);
 }
 
 /**
