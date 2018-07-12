@@ -303,15 +303,19 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
     '#weight' => 20,
   );
 
-  $element['remove'] = array(
+  $ajax_settings['progress']['type'] = 'throbber';
+  $ajax_settings['progress']['message'] = NULL;
+  $ajax_settings['effect'] = 'none';
+  $element['remove_button'] = array(
+    '#name' => implode('_', $element['#parents']) . '_remove_button',
     '#type' => 'link',
     '#href' => '',
     '#title' => t('Remove media'),
-    '#attributes' => array('class' => array('button', 'remove')),
-    '#options' => array(
-      'fragment' => FALSE,
-      'external' => TRUE,
-    ),
+    '#validate' => array(),
+    '#submit' => array('file_managed_file_submit'),
+    '#limit_validation_errors' => array($element['#parents']),
+    '#ajax' => $ajax_settings,
+    '#attributes' => array('class' => array('button', 'remove', 'edit')),
     '#weight' => 30,
   );
 
@@ -395,6 +399,9 @@ function easyddb_dams_media_browser_media_wysiwyg_token_to_markup_alter(&$elemen
     }
     $element['#theme'] = $theming_function;
   }
+
+  // Remove image category from rendering.
+  unset($element['content']['field_dams_category']);
 }
 
 /**
