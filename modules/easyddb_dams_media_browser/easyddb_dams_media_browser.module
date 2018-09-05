@@ -12,13 +12,13 @@ include_once 'easyddb_dams_media_browser.features.inc';
 function easyddb_dams_media_browser_media_browser_plugins_alter(&$plugins) {
   $plugin_names = array_keys($plugins);
   // Here we change the weight of the items because Media Module can't handle it at the moment
-  // NOTE: We use the fact that the displays were created in correct order
+  // NOTE: We use the fact that the displays were created in correct order.
   foreach ($plugin_names as $name) {
 
     $parts = explode('_', $name);
     if ($parts[0] == 'dams' && $parts[1] == 'media' && $parts[2] == 'browser--media') {
       $plugins[$name]['#weight'] = 11 + $parts[4];
-      // Add specific libraries for media
+      // Add specific libraries for media.
       ctools_include('modal');
       ctools_modal_add_js();
     }
@@ -38,10 +38,10 @@ function easyddb_dams_media_browser_media_browser_plugins_alter(&$plugins) {
 /**
  * Implements hook_enable().
  *
- * Update the easyddb_wysiwyg profile
+ * Update the easyddb_wysiwyg profile.
  */
 function easyddb_dams_media_browser_enable() {
-  // Update the WYSIWYG profile with easyddb_dams_media_browser plugins
+  // Update the WYSIWYG profile with easyddb_dams_media_browser plugins.
   $wysiwyg = array(
     'default' => 1,
     'user_choose' => 0,
@@ -147,12 +147,14 @@ function easyddb_dams_media_browser_media_wysiwyg_wysiwyg_allowed_view_modes_alt
         ),
       );
       break;
+
     case 'image':
       $view_modes['easyddb_dams_media_browser_download_link'] = array(
         'label' => t('DAMS link'),
         'custom settings' => FALSE,
       );
       break;
+
     case 'document':
       $view_modes = array(
         'easyddb_dams_media_browser_download_icon' => array(
@@ -165,6 +167,7 @@ function easyddb_dams_media_browser_media_wysiwyg_wysiwyg_allowed_view_modes_alt
         ),
       );
       break;
+
     default:
   }
 }
@@ -208,12 +211,12 @@ function easyddb_dams_media_browser_wysiwyg_include_directory($type) {
  * Implements hook_form_alter().
  */
 function easyddb_dams_media_browser_form_alter(&$form, &$form_state, $form_id) {
-  // Removing unnecessary options from media
+  // Removing unnecessary options from media.
   if ($form_id == 'media_format_form') {
     unset($form['options']['format']['#options']['media_link']);
     unset($form['options']['format']['#options']['token']);
   }
-  // Add new styles to media edit form
+  // Add new styles to media edit form.
   if ($form_id == 'file_entity_edit') {
     $form['file_preview'] = array(
       '#type' => 'markup',
@@ -230,12 +233,12 @@ function easyddb_dams_media_browser_form_alter(&$form, &$form_state, $form_id) {
 function easyddb_dams_media_browser_element_info_alter(&$type) {
   // Rewriting default media process (mostly copy/paste)
   // in order to include our changed dams.media.js file with specific
-  // 'Edit' button functionality
+  // 'Edit' button functionality.
   $type['media']['#process'] = array('easyddb_dams_media_browser_media_element_process');
 }
 
 /**
- * Alternative process function for media element
+ * Alternative process function for media element.
  */
 function easyddb_dams_media_browser_media_element_process(&$element, &$form_state, $form) {
   $fid = isset($element['#value']['fid']) ? $element['#value']['fid'] : 0;
@@ -308,14 +311,13 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
   $ajax_settings['effect'] = 'none';
   $element['remove_button'] = array(
     '#name' => implode('_', $element['#parents']) . '_remove_button',
-    '#type' => 'link',
-    '#href' => '',
-    '#title' => t('Remove media'),
+    '#type' => 'submit',
+    '#value' => t('Remove media'),
     '#validate' => array(),
     '#submit' => array('file_managed_file_submit'),
     '#limit_validation_errors' => array($element['#parents']),
     '#ajax' => $ajax_settings,
-    '#attributes' => array('class' => array('button', 'remove', 'edit')),
+    '#attributes' => array('class' => array('button', 'remove')),
     '#weight' => 30,
   );
 
@@ -347,10 +349,10 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
 
 /**
  * Alternative validate function for the media upload form in order
- * to correctly process our 'upload from url' option
+ * to correctly process our 'upload from url' option.
  */
 function easyddb_dams_media_browser_media_add_upload_validate($form, &$form_state) {
-  // Check what type of upload we have
+  // Check what type of upload we have.
   if ($form_state['values']['url_checkbox'] == 'url_checkbox') {
     $new_file = system_retrieve_file($form_state['values']['url_resource'], NULL, TRUE);
 
@@ -387,12 +389,15 @@ function easyddb_dams_media_browser_media_wysiwyg_token_to_markup_alter(&$elemen
       case 'easyddb_dams_media_browser_download_link':
         $theming_function = 'easyddb_dams_media_browser_view_doc';
         break;
+
       case 'easyddb_dams_media_browser_inline':
         $theming_function = 'easyddb_dams_media_browser_inline';
         break;
+
       case 'easyddb_dams_media_browser_popup':
         $theming_function = 'easyddb_dams_media_browser_popup';
         break;
+
       case 'easyddb_dams_media_browser_download_icon':
         $theming_function = 'easyddb_dams_media_browser_download_icon';
         break;
@@ -445,31 +450,35 @@ function template_preprocess_easyddb_dams_media_browser_view_doc(&$variables) {
     case 'docx':
       $doctype_icon .= 'doc_doc.png';
       break;
+
     case 'xls':
     case 'xlsx':
       $doctype_icon .= 'doc_xls.png';
       break;
+
     case 'ppt':
     case 'pptx':
       $doctype_icon .= 'doc_ppt.png';
       break;
+
     case 'pdf':
       $doctype_icon .= 'doc_pdf.png';
       break;
+
     case 'txt':
     default:
       $doctype_icon .= 'doc_txt.png';
       break;
   }
 
-  // Setting up variables for the template
+  // Setting up variables for the template.
   $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
   $variables['image_icon']    = $doctype_icon;
   $variables['download_path'] = file_create_url($file->uri);
 }
 
 /**
- * Helper function to get the doctype_icon
+ * Helper function to get the doctype_icon.
  */
 function easyddb_dams_media_browser_get_doctype_icon($file = NULL) {
   if (is_null($file)) {
@@ -478,7 +487,7 @@ function easyddb_dams_media_browser_get_doctype_icon($file = NULL) {
 
   $doctype_icon = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/wysiwyg_plugins/images/';
 
-  // Setting icon by file type and extension
+  // Setting icon by file type and extension.
   if ($file->type == 'document') {
     $extension = explode('.', $file->uri);
     $extension = array_pop($extension);
@@ -487,17 +496,21 @@ function easyddb_dams_media_browser_get_doctype_icon($file = NULL) {
       case 'docx':
         $doctype_icon .= 'doc_doc.png';
         break;
+
       case 'xls':
       case 'xlsx':
         $doctype_icon .= 'doc_xls.png';
         break;
+
       case 'ppt':
       case 'pptx':
         $doctype_icon .= 'doc_ppt.png';
         break;
+
       case 'pdf':
         $doctype_icon .= 'doc_pdf.png';
         break;
+
       case 'txt':
       default:
         $doctype_icon .= 'doc_txt.png';
@@ -518,6 +531,7 @@ function easyddb_dams_media_browser_get_doctype_icon($file = NULL) {
 
 /**
  * Implements hook_preprocess_easyddb_dams_media_browser_inline().
+ *
  * @todo: Implement check for other type of files going through this function.
  */
 function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
@@ -525,8 +539,8 @@ function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
   $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
   $audio_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_mp3.swf';
   $video_player = '/' . drupal_get_path('module', 'easyddb_dams_media_browser') . '/players/player_video.swf';
-  // Setting up variables for the template
-  $variables['file_type']     = $file->type;
+  // Setting up variables for the template.
+  $variables['file_type'] = $file->type;
   $variables['player'] = '';
   if ($file->type == 'audio') {
     $variables['player'] = $audio_player;
@@ -545,7 +559,7 @@ function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
 function template_preprocess_easyddb_dams_media_browser_popup(&$variables) {
   $file = $variables['element']['content']['file']['#file'];
   $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
-  // Setting up variables for the template
+  // Setting up variables for the template.
   $variables['file_type']     = $file->type;
   $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
   $variables['image_icon']    = $doctype_icon;
@@ -559,7 +573,7 @@ function template_preprocess_easyddb_dams_media_browser_download_icon(&$variable
   $file = $variables['element']['content']['file']['#file'];
   $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
 
-  // Setting up variables for the template
+  // Setting up variables for the template.
   $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
   $variables['image_icon']    = $doctype_icon;
   $variables['download_path'] = file_create_url($file->uri);
@@ -621,7 +635,7 @@ function easyddb_dams_media_browser_preprocess_field(&$variables, $hook) {
     // Set image alt.
     $variables['items'][0]['#item']['alt'] = $variables['items'][0]['#item']['title'];
     if (!empty($variables['items'][0]['#item']['field_file_image_alt_text'])) {
-        $variables['items'][0]['#item']['alt'] = $variables['items'][0]['#item']['field_file_image_alt_text'][$lng][0]['safe_value'];
+      $variables['items'][0]['#item']['alt'] = $variables['items'][0]['#item']['field_file_image_alt_text'][$lng][0]['safe_value'];
     }
 
   }
