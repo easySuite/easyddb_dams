@@ -12,7 +12,7 @@ Drupal.behaviors.mediaElement = {
     // Options set from media.fields.inc for the types, etc to show in the browser.
 
     // For each widget (in case of multi-entry)
-    $('.media-widget, td', context).once('mediaBrowserLaunch', function () {
+    $('.media-widget', context).once('mediaBrowserLaunch', function () {
       var $this = this;
       var options = settings.media.elements[$this.id];
       var globalOptions = {};
@@ -25,11 +25,13 @@ Drupal.behaviors.mediaElement = {
       var editButton = $('.edit', $this);
       var removeButton = $('.remove', $this);
       var attachButton = $('.attach', $this);
+      var manualCropButton = $('.manualcrop-style-button', $this);
 
       // Hide the edit and remove buttons if there is no file data yet.
       if (fidField.val() === '0') {
         removeButton.hide();
         editButton.hide();
+        manualCropButton.hide();
       }
       attachButton.hide();
 
@@ -60,7 +62,7 @@ Drupal.behaviors.mediaElement = {
       });
 
       // When someone clicks the Remove button.
-      $('.remove', $this).bind('click', function (e) {
+      $('.remove', $this).on('mousedown', function () {
         // Set the value of the file field fid (hidden) and trigger change.
         fidField.val(0);
         fidField.trigger('change');
@@ -74,16 +76,17 @@ Drupal.behaviors.mediaElement = {
       $('.fid', $this).bind('change', function () {
         var fid = fidField.val();
 
-        if (fid === 0) {
+        if (fid === '0') {
           editButton.hide();
           removeButton.hide();
+          manualCropButton.hide();
         }
         else {
           editButton.attr('href', '/file/' + fid + '/edit');
           editButton.attr('target', '_blank');
           editButton.addClass('overlay-exclude');
           // Re-process the edit link through CTools modal behaviors.
-          editButton.unbind('click');
+          editButton.unbind('mousedown');
           // @todo Maybe add support for Drupal.detachBehaviors in Drupal.behaviors.ZZCToolsModal?
           Drupal.attachBehaviors(editButton.parent(), Drupal.settings);
           removeButton.show();
