@@ -12,36 +12,38 @@ Drupal.behaviors.mediaElement = {
     // Options set from media.fields.inc for the types, etc to show in the browser.
 
     // For each widget (in case of multi-entry)
-    $('.media-widget, td', context).once('mediaBrowserLaunch', function () {
-      let options = settings.media.elements[this.id];
-      let globalOptions = {};
+    $('.media-widget', context).once('mediaBrowserLaunch', function () {
+      var $this = this;
+      var options = settings.media.elements[$this.id];
+      var globalOptions = {};
       if (options && options.global !== undefined) {
         globalOptions = options.global;
       }
-      // options = Drupal.settings.media.fields[this.id];
-      let fidField = $('.fid', this);
-      let previewField = $('.preview', this);
-      let editButton = $('.edit', this);
-      let removeButton = $('.remove', this);
-      let attachButton = $('.attach', this);
+
+      var fidField = $('.fid', $this);
+      var previewField = $('.preview', $this);
+      var editButton = $('.edit', $this);
+      var removeButton = $('.remove', $this);
+      var attachButton = $('.attach', $this);
+      var manualCropButton = $('.manualcrop-style-button', $this);
 
       // Hide the edit and remove buttons if there is no file data yet.
-      if (fidField.val() === 0) {
-        editButton.hide();
+      if (fidField.val() === '0') {
         removeButton.hide();
+        editButton.hide();
+        manualCropButton.hide();
       }
-
       attachButton.hide();
 
       // When someone clicks the link to pick media (or clicks on an existing thumbnail)
-      $('.launcher', this).on('click', function () {
+      $('.launcher', $this).on('click', function () {
         // Launch the browser, provide the following callback function.
         // @TODO: This should not be an anonymous function.
         Drupal.media.popups.mediaBrowser(function (mediaFiles) {
           if (mediaFiles.length < 0) {
             return;
           }
-          let mediaFile = mediaFiles[0];
+          var mediaFile = mediaFiles[0];
           // Set the value of the file field fid (hidden) and trigger a change.
           fidField.val(mediaFile.fid);
           fidField.trigger('change');
@@ -60,7 +62,7 @@ Drupal.behaviors.mediaElement = {
       });
 
       // When someone clicks the Remove button.
-      $('.remove', this).on('click', function () {
+      $('.remove', $this).on('mousedown', function () {
         // Set the value of the file field fid (hidden) and trigger change.
         fidField.val(0);
         fidField.trigger('change');
@@ -71,19 +73,20 @@ Drupal.behaviors.mediaElement = {
       });
 
       // Show or hide the edit/remove buttons if the field has a file or not.
-      $('.fid', this).on('change', function() {
-        let fid = fidField.val();
+      $('.fid', $this).bind('change', function () {
+        var fid = fidField.val();
 
-        if (fid === 0) {
+        if (fid === '0') {
           editButton.hide();
           removeButton.hide();
+          manualCropButton.hide();
         }
         else {
           editButton.attr('href', '/file/' + fid + '/edit');
           editButton.attr('target', '_blank');
           editButton.addClass('overlay-exclude');
           // Re-process the edit link through CTools modal behaviors.
-          editButton.unbind('click');
+          editButton.unbind('mousedown');
           // @todo Maybe add support for Drupal.detachBehaviors in Drupal.behaviors.ZZCToolsModal?
           Drupal.attachBehaviors(editButton.parent(), Drupal.settings);
           removeButton.show();
