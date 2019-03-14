@@ -8,7 +8,7 @@
   $(document).ready(function() {
     var easyddb_dialog = $('<div></div>');
     var options = {};
-    $('a.easyddb-dams-popup').live('click', function(e) {
+    $('a.easyddb-dams-popup').on('click', function(e) {
       var dialog_content = '';
       var media = $(this).attr('href');
 
