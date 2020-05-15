@@ -563,8 +563,10 @@ function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
 function template_preprocess_easyddb_dams_media_browser_popup(&$variables) {
   $file = $variables['element']['content']['file']['#file'];
   $doctype_icon = easyddb_dams_media_browser_get_doctype_icon($file);
+  $mime = explode('/', $file->filemime);
   // Setting up variables for the template.
   $variables['file_type']     = $file->type;
+  $variables['file_mime']     = $mime[1];
   $variables['file_title']    = (isset($file->field_dams_title[0])) ? $file->field_dams_title[0] : $file->filename;
   $variables['image_icon']    = $doctype_icon;
   $variables['download_path'] = file_create_url($file->uri);
