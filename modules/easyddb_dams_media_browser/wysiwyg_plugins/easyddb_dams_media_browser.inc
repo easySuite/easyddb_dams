@@ -108,6 +108,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
         'enabledPlugins' => array(
           'upload' => 'upload',
           'dams_media_browser--media_browser_2' => 'dams_media_browser--media_browser_2',
+          'unsplash' => 'unsplash',
         ),
         'file_extensions' => 'jpg gif png jpeg',
       ),
