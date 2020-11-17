@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Install/uninstall routine.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function easyddb_dams_enable() {
+  module_enable(['media_unsplash']);
+}
+
+/**
+ * Enables the Unsplash integration.
+ */
+function easyddb_dams_update_7001(&$sandbox) {
+  module_enable(['media_unsplash']);
+}
