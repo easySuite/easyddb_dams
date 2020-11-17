@@ -2,5 +2,5 @@ name = "easyOPAC DAMS"
 description = "Digital Asset Management System"
 core = "7.x"
 package = "easyOPAC"
-version = 7.x-6.0.2
+version = 7.x-6.1.1
 dependencies[] = "media"
