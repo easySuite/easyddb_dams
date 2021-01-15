@@ -64,8 +64,8 @@ Drupal.wysiwyg.plugins.dams_video = {
       imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
     }
     if (viewMode === 'easyddb_dams_media_browser_inline') {
-      imgElement = $('<video width="640" height="360" controls>' +
-        '<source src="' + mediaFile.url + ' "type="video/mp4"></source>' +
+      imgElement = $('<video width="100%" controls>' +
+        '<source src="' + mediaFile.url + '" type="video/mp4"></source>' +
       '</video>');
     }
     this.addImageAttributes(imgElement, mediaFile.fid, viewMode, options);
