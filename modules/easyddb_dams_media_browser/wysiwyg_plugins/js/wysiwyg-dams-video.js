@@ -64,15 +64,20 @@ Drupal.wysiwyg.plugins.dams_video = {
       imgElement = $('<a href="' + mediaFile.url + '" alt="' + alt + '" title="' + title + '">' + mediaFile.filename + '</a>');
     }
     if (viewMode === 'easyddb_dams_media_browser_inline') {
-      if (mediaFile.filemime !== 'video/youtube') {
-        imgElement = $('<video width="100%" controls>' +
-          '<source src="' + mediaFile.url + '" type="video/mp4"></source>' +
-        '</video>');
+      if (mediaFile.filemime === "video/youtube") {
+        var $url = new URL(mediaFile.url);
+        var ytId = $url.searchParams.get("v");
+        imgElement = $('<iframe width="100%" src="https://www.youtube.com/embed/' + ytId + '"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+      }
+      else if (mediaFile.filemime === "video/vimeo") {
+        var $vUrl = new URL(mediaFile.url);
+        var $video_id = $vUrl.pathname;
+        imgElement = $('<iframe src="https://player.vimeo.com/video' + $video_id + '" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
       }
       else {
-        var $url = new URL(mediaFile.url);
-        var ytId = $url.searchParams.get('v');
-        imgElement = $('<iframe width="640" height="360" src="http://www.youtube.com/embed/'+ ytId +'"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+        imgElement = $('<video width="100%" controls>' +
+          '<source src="' + mediaFile.url + '" type="video/mp4"></source>' +
+          '</video>');
       }
     }
     this.addImageAttributes(imgElement, mediaFile.fid, viewMode, options);
@@ -116,8 +121,9 @@ Drupal.wysiwyg.plugins.dams_video = {
    *
    * Going forward, if we don't care about supporting other editors
    * we can use the fakeobjects plugin to ckeditor to provide cleaner
-   * transparency between what Drupal will output <div class="field..."><img></div>
-   * instead of just <img>, for now though, we're going to remove all the stuff surrouneasyddb the images.
+   * transparency between what Drupal will output <div
+   * class="field..."><img></div> instead of just <img>, for now though, we're
+   * going to remove all the stuff surrouneasyddb the images.
    *
    * @param String formattedMedia
    *  Element containing the image

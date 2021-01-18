@@ -16,9 +16,11 @@
 <?php if ($file_type == 'video') : ?>
   <?php if (isset($dams_youtube_video)): ?>
     <?php print $dams_youtube_video; ?>
+  <?php elseif (isset($dams_vimeo_video)): ?>
+    <?php print $dams_vimeo_video; ?>
   <?php else: ?>
-    <video width="640" height="360" controls>
-      <source src="<?php print $download_path ?>" type="video/mp4"/>
+    <video width="100%" controls>
+      <source src="<?php print $download_path ?>" type="video/mp4" />
     </video>
   <?php endif; ?>
 <?php endif; ?>

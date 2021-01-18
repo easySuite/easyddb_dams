@@ -553,6 +553,9 @@ function template_preprocess_easyddb_dams_media_browser_inline(&$variables) {
     if ($file->filemime == 'video/youtube') {
       $variables['dams_youtube_video'] = theme('media_youtube_video', ['uri' => $file->uri]);
     }
+    elseif ($file->filemime == 'video/vimeo') {
+      $variables['dams_vimeo_video'] = theme('media_vimeo_video', ['uri' => $file->uri]);
+    }
     $variables['file_mime'] = $file->filemime;
     $variables['player'] = $video_player;
   }
