@@ -57,6 +57,7 @@ function easyddb_dams_media_browser_easyddb_dams_media_browser_plugin() {
         'activePlugins' => array(),
         'enabledPlugins' => array(
           'upload' => 'upload',
+          'media_internet' => 'media_internet',
           'dams_media_browser--media_browser_3' => 'dams_media_browser--media_browser_3',
         ),
         'file_extensions' => 'mp4 m4v f4v flv',

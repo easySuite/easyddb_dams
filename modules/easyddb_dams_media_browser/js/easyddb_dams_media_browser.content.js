@@ -39,10 +39,15 @@
         if ($(this).hasClass('easyddb-dams-youtube')) {
           var url = new URL(media);
           var ytId = url.searchParams.get('v');
-          dialog_content = '<iframe width="640" height="360" src="http://www.youtube.com/embed/' + ytId + '"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+          dialog_content = '<iframe width="100%" height="360" src="https://www.youtube.com/embed/' + ytId + '"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        }
+        else if ($(this).hasClass('easyddb-dams-vimeo')) {
+          var $url = new URL(media);
+          var $video_id = $url.pathname;
+          dialog_content = '<iframe src="https://player.vimeo.com/video' + $video_id + '" width="100%" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         }
         else {
-          dialog_content = '<video width="640" height="360" controls>' +
+          dialog_content = '<video width="100%" height="360" controls>' +
             '<source src="' + media + ' "type="video/mp4"></source>' +
             '</video>';
         }
