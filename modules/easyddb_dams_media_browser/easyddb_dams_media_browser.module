@@ -258,6 +258,9 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
     'content' => !empty($file) ? media_get_thumbnail_preview($file) : array(),
   );
 
+  $is_paragraphs_entity = $element['#entity_type'] === 'paragraphs_item';
+  $is_paragraphs_node_host = $is_paragraphs_entity && $element['#entity']->hostEntityType() === 'node';
+
   $element['select'] = array(
     '#type' => 'link',
     '#href' => '',
@@ -268,6 +271,7 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
       'external' => TRUE,
     ),
     '#weight' => 10,
+    '#access' => !($is_paragraphs_entity && $is_paragraphs_node_host),
   );
 
   $ajax_settings = array(
@@ -289,9 +293,15 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
     '#weight' => -1,
   );
 
+  $return = drupal_get_destination();
+  if ($is_paragraphs_entity && $is_paragraphs_node_host) {
+    $hostNodeId = $element['#entity']->hostEntityId();
+    $return['destination'] = "node/{$hostNodeId}/edit";
+  }
+
   $element['edit'] = array(
     '#type' => 'link',
-    '#href' => url('file/' . $fid . '/edit', array('query' => drupal_get_destination())),
+    '#href' => url('file/' . $fid . '/edit', array('query' => $return)),
     '#title' => t('Edit media'),
     '#attributes' => array(
       'class' => array(
