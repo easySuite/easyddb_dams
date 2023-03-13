@@ -295,8 +295,8 @@ function easyddb_dams_media_browser_media_element_process(&$element, &$form_stat
 
   $return = drupal_get_destination();
   if ($is_paragraphs_entity && $is_paragraphs_node_host) {
-    $hostNodeId = $element['#entity']->hostEntityId();
-    $return['destination'] = "node/{$hostNodeId}/edit";
+    $host_node_id = $element['#entity']->hostEntityId();
+    $return['destination'] = "node/{$host_node_id}/edit";
   }
 
   $element['edit'] = array(
